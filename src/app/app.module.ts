@@ -58,6 +58,7 @@ import { ClientlistComponent } from './clientlist/clientlist.component';
 import { AddClientComponent } from './add-client/add-client.component';
 import { ClientInfoComponent } from './client-info/client-info.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
+import { ClientsService } from './services/clients.service';
 
 
 
@@ -72,8 +73,8 @@ const appRoutes: Routes = [
     {path: 'closedjobs', component: ClosedjobsComponent},
     {path: 'clientlist', component: ClientlistComponent},
     {path: 'addclient', component: AddClientComponent},
-    {path: 'clientinfo', component: ClientInfoComponent},
-    {path: 'editclient', component: EditClientComponent},
+    {path: 'clientinfo/:id', component: ClientInfoComponent},
+    {path: 'editclient/:id', component: EditClientComponent},
     {path: '**', component: HomeComponent},
 ];
 
@@ -124,7 +125,7 @@ const appRoutes: Routes = [
     ],  // end imports
    declarations: [AppComponent, HomeComponent, AddjobComponent, ClientjobComponent, EditjobComponent, EditnextjobComponent, ClosedjobsComponent, ClientlistComponent, AddClientComponent, ClientInfoComponent, EditClientComponent],
     bootstrap: [AppComponent],
-    providers: [],
+    providers: [ClientsService],
     entryComponents: []
 })
 export class AppModule {

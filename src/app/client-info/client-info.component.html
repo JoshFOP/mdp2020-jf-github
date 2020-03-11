@@ -1,16 +1,21 @@
 <section>
   <h1 id="headerTitle">Client Information</h1>
     <div class="ClientInfo">
-      <mat-list class="ClientInfoList">
-        <mat-list-item class="ClientData"><strong>Name: &nbsp;</strong>John Appleseed</mat-list-item>
-        <mat-list-item class="ClientData"><strong>Phone Number: &nbsp;</strong>0412345678</mat-list-item>
-        <mat-list-item class="ClientData"><strong>Email: &nbsp;</strong>johnappleseed@gmail.com</mat-list-item>
-        <mat-list-item class="ClientData"><strong>Address: &nbsp;</strong>123 First Street, North Sydney, NSW, 2060</mat-list-item>
-      </mat-list>
+     
+      <mat-list-item class="ClientData">
+        <div>
+          <strong>Name:</strong> <br> {{clients[id].name}} <br> <br>
+          <strong>Phone Number:</strong> <br> {{clients[id].Pnum}} <br> <br>
+          <strong>Email:</strong> <br> {{clients[id].Email}} <br> <br>
+          <strong>Address:</strong> <br> {{clients[id].Add1}}, {{clients[id].Add2}} {{clients[id].city}}, {{clients[id].state}}, {{clients[id].Pcode}}
+          
+        </div>
+      </mat-list-item>
+     
       <br>
       <div class="ButtonDiv">
-        <button mat-flat-button id="EditItem" routerLink="/editclient">Edit</button>
-        <button mat-flat-button id="DeleteClient" (click)="CloseJob()">Delete</button>
+        <button mat-flat-button id="EditItem" [routerLink]="['/editclient', id]">Edit</button>
+        <button mat-flat-button id="DeleteClient" (click)="deleteClient()">Delete</button>
       </div>
     </div>
 

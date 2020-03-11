@@ -1,21 +1,19 @@
 <section>
   <h1 id="headerTitle">Clients</h1>
 
+<mat-list-item *ngFor="let item of clients; let i=index;">
   <div class='ClientListDiv'>
-    <button mat-button class='ClientList' routerLink="/clientinfo">
-    John Appleseed
+    <button mat-button class='ClientList'[routerLink]="['/clientinfo', i]" >
+      {{item.name}} 
     </button>
   </div>
 
-  <div class='ClientListDiv'>
-    <button mat-button class='ClientList' routerLink="/clientjob">
-    Bob Smith
-    </button>
-  </div>
+</mat-list-item>
 
   <div class='NewClientButtonDiv'>
     <button mat-button class='NewClientButton' routerLink="/addclient">
     Add Client
     </button>
   </div>
+
 </section>

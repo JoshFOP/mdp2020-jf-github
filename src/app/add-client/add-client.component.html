@@ -1,43 +1,45 @@
 <section>
   <h1 id='headerTitle'>Add Client</h1>
 
-  <form class="AddClientForm">
+
+  <form class="AddClientForm" [formGroup]="clientsForm" (ngSubmit)="submit()">
+  <div class="errormessage">{{errorMessage}}</div>
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Name">
+      <input matInput placeholder="Name" formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
       <span matPrefix>+04 &nbsp;</span>
-      <input type="tel" matInput placeholder="Phone Number">
+      <input type="tel" matInput placeholder="Phone Number" formControlName="Pnum">
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Email" dividerColor="warn">
+      <input matInput placeholder="Email" dividerColor="warn" formControlName="Email">
       
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address">
+      <input matInput placeholder="Address" formControlName="Add1">
     </mat-form-field>
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address 2">
+      <input matInput placeholder="Address 2" formControlName="Add2">
     </mat-form-field>
 
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput placeholder="City">
+        <input matInput placeholder="City" formControlName="city">
       </mat-form-field>
     </span>
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput placeholder="State">
+        <input matInput placeholder="State" formControlName="state">
       </mat-form-field>
     </span>
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput #postalCode maxlength="4" placeholder="Postal Code">
+        <input matInput #postalCode maxlength="4" placeholder="Postal Code" formControlName="Pcode">
       </mat-form-field>
     </span>
 
