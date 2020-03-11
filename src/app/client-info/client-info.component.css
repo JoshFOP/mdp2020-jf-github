@@ -1,0 +1,85 @@
+.ClientInfo {
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  margin-bottom: 25px;
+}
+
+#DeleteClient {
+  background-color: rgb(220, 30, 30);
+  color: white;
+  border-radius: 25px;
+  transition: 0.3s;
+  text-align: center;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#DeleteClient:hover {
+  background-color: rgb(235, 45, 45);
+}
+
+/* Edit Job */
+
+#EditItem {
+  background-color: rgb(30,200,220);
+  color: white;
+  border-radius: 25px;
+  width: 70px;
+  transition: 0.3s;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#EditItem:hover {
+  background-color: rgb(45,180,235);
+}
+
+.ButtonDiv {
+  text-align: center;
+
+}
+
+.NewClientButtonDiv {
+  padding-bottom: 10px;
+}
+
+.CreateJobButton {
+  background-image: linear-gradient(87deg,  rgb(30,200,220) 50%, rgb(45,180,235) 75%);
+  color: white;
+  border-style: solid;
+  border-color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.CreateJobButton:active {
+  background-color: white;
+}
+
+.ClientJobDiv {
+  padding-bottom: 10px;
+}
+
+.ClientJob {
+  background-color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.ClientJob:active {
+  background-image: linear-gradient(87deg,  rgb(30,200,220) 50%, rgb(45,180,235) 75%);
+  color: white;
+  border-style: solid;
+  border-color: white;
+}

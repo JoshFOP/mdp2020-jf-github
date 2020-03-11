@@ -1,0 +1,214 @@
+<section>
+  <!-- Client Info START -->
+    <h1 id="headerTitle">Kitchen Reconstruction</h1>
+    <div class="ClientInfo">
+      <mat-list class="ClientInfoList">
+        
+        <mat-list-item class="InfoHeading">Name: </mat-list-item>
+          <mat-list-item class="ClientData">John Appleseed </mat-list-item>
+            
+        <mat-list-item class="InfoHeading">Phone Number: </mat-list-item>
+          <mat-list-item class="ClientData">0412345678 </mat-list-item>
+
+        <mat-list-item class="InfoHeading">Email: </mat-list-item>
+          <mat-list-item class="ClientData">johnappleseed@gmail.com </mat-list-item>
+
+        <mat-list-item class="InfoHeading">Address: </mat-list-item>
+          <mat-list-item class="ClientData">123 First Street, North Sydney, NSW, 2060 </mat-list-item>
+
+        <mat-list-item class="InfoHeading">Quote: </mat-list-item>
+          <mat-list-item class="ClientData">$4000 </mat-list-item>
+
+        <mat-list-item class="InfoHeading">Job Status: </mat-list-item>
+          <mat-list-item class="JobStatus">Open</mat-list-item>
+
+        
+      </mat-list>
+      <br>
+      <div class="ButtonDiv">
+        <button mat-flat-button id="EditItem" routerLink="/editjob">Edit</button>
+        <button mat-flat-button id="CloseItem" (click)="CloseJob()">Close Job</button>
+      </div>
+    </div>
+  <!-- Client Info END -->
+
+  <!-- To Do List START -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         <div class="PanelTitle">To Do List</div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    <div class="ToDoListDiv">
+
+      <!-- Mat-List: This is where the to do list will go -->
+      <!-- SUGGESTION: Each job could have an hour counter. E.g: Fix deck - individual hours -->
+      <mat-list *ngFor="let job of JobsForClient" class="ToDoList">
+        {{job}}
+        <span class="editItem">
+          <mat-icon><strong>check</strong></mat-icon>
+          <mat-icon>edit</mat-icon>
+          <mat-icon>delete</mat-icon>
+        </span>
+      </mat-list>
+      <!-- Mat-List END -->
+
+      <mat-divider></mat-divider>
+
+      <form>
+        <mat-form-field class="NewItem">
+          <input matInput placeholder="New Item">
+        </mat-form-field>
+
+        <button mat-flat-button id="submitItem">Add</button>
+      </form>
+    </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- To Do List END -->
+
+  <br>
+
+  <!-- Job Log START -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         <div class="PanelTitle">Job Log</div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+    <div class="JobLogDiv">
+
+      <!-- Mat-List: This is where the Job Log will go -->
+      <mat-list *ngFor="let index of DateLog; let i=index"  class="JobLog">
+      
+        <span class="JobLogWrapper">
+          <strong>{{DateLog[i]}}</strong> | {{HoursLog[i] + " " + "Hours"}} | {{JobLog[i]}} 
+        </span>
+          
+        <span class="editItem">
+          <mat-icon>edit</mat-icon>
+          <mat-icon>delete</mat-icon>
+        </span>
+       
+      
+      </mat-list>
+
+      
+      <!-- Mat-List END -->
+
+      <mat-divider></mat-divider>
+
+      <form>
+        <span class="JobLogDH">
+          <mat-form-field class="JobLogInputDate">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="JobLogInput">
+            <input matInput type="number" placeholder="Hours">
+          </mat-form-field>
+        </span>
+
+        <mat-form-field class="NewItem">
+          <input matInput placeholder="New Item">
+        </mat-form-field>
+
+        <button mat-flat-button id="submitItem">Add</button>
+      </form>
+    </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- Job Log END -->
+
+  <br>
+
+<!-- Expenses START -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         <div class="PanelTitle">Expenses</div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+    <div class="ExpensesLogDiv">
+
+    <table mat-table [dataSource]="dataSource" class="ExpensesTable">
+
+  <!-- Qty Column -->
+      <ng-container matColumnDef="ItemQty">
+        <th mat-header-cell *matHeaderCellDef> Qty </th>
+        <td mat-cell *matCellDef="let element"> {{element.ItemQty}} </td>
+      </ng-container>
+
+  <!-- Item Column -->
+      <ng-container matColumnDef="ItemExp">
+        <th mat-header-cell *matHeaderCellDef class="tdCell"> Item </th>
+        <td mat-cell *matCellDef="let element" class="tdCell"> {{element.ItemExp}} </td>
+      </ng-container>
+
+  <!-- Price Column -->
+      <ng-container matColumnDef="ItemPrice">
+        <th mat-header-cell *matHeaderCellDef class="tdCell"> Price </th>
+        <td mat-cell *matCellDef="let element" class="tdCell"> ${{element.ItemPrice}} </td>
+      </ng-container>
+
+  <!-- Total Column -->
+      <ng-container matColumnDef="TotalCost">
+        <th mat-header-cell *matHeaderCellDef class="tdCell"> Total </th>
+        <td mat-cell *matCellDef="let element" class="tdCell"> ${{element.ItemQty * element.ItemPrice}} 
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Edit">
+        <th mat-header-cell *matHeaderCellDef class="EditCell"> Edit </th>
+        <td mat-cell *matCellDef="let element" class="EditCell">  
+
+        <span class="editItemExp">
+          <mat-icon>edit</mat-icon>
+          <mat-icon>delete</mat-icon>
+        </span>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+      <h1>Total Expenses: $24</h1>
+
+      <mat-divider></mat-divider>
+
+      <form>
+        <span class="ExpensesSpan">
+          <mat-form-field class="QtyInput">
+            <input matInput type="number" placeholder="Qty">
+          </mat-form-field>
+
+          <mat-form-field class="ItemCost">
+            <input matInput type="number" placeholder="Price">
+          </mat-form-field>
+        </span>
+
+        <mat-form-field class="ItemExpenses">
+          <input matInput placeholder="New item">
+        </mat-form-field>
+
+        <button mat-flat-button id="submitItem">Add</button>
+      </form>
+    </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- Hour Counter END -->
+  
+
+</section>

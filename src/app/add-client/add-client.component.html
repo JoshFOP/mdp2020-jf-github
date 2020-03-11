@@ -1,0 +1,47 @@
+<section>
+  <h1 id='headerTitle'>Add Client</h1>
+
+  <form class="AddClientForm">
+
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="FormInputWidth">
+      <span matPrefix>+04 &nbsp;</span>
+      <input type="tel" matInput placeholder="Phone Number">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Email" dividerColor="warn">
+      
+    </mat-form-field>
+
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Address">
+    </mat-form-field>
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Address 2">
+    </mat-form-field>
+
+    <span class='AddressSpan'>
+      <mat-form-field class="FormInputWidth">
+        <input matInput placeholder="City">
+      </mat-form-field>
+    </span>
+    <span class='AddressSpan'>
+      <mat-form-field class="FormInputWidth">
+        <input matInput placeholder="State">
+      </mat-form-field>
+    </span>
+    <span class='AddressSpan'>
+      <mat-form-field class="FormInputWidth">
+        <input matInput #postalCode maxlength="4" placeholder="Postal Code">
+      </mat-form-field>
+    </span>
+
+  <button mat-flat-button id="submitClient">Add</button>
+</form>
+
+</section>

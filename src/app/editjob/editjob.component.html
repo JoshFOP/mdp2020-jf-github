@@ -1,0 +1,47 @@
+<section>
+  <h1 id='headerTitle'>Edit Job</h1>
+
+  <form class="AddJobForm">
+
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Name" value="John Appleseed">
+    </mat-form-field>
+
+    <mat-form-field class="FormInputWidth">
+      <span matPrefix>+04 &nbsp;</span>
+      <input type="tel" matInput placeholder="Phone Number" value="0412345678">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Email" dividerColor="warn" value="johnappleseed@gmail.com">
+      
+    </mat-form-field>
+
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Address" value="123 First Street">
+    </mat-form-field>
+    <mat-form-field class="FormInputWidth">
+      <input matInput placeholder="Address 2">
+    </mat-form-field>
+
+    <span class='AddressSpan'>
+      <mat-form-field class="FormInputWidth">
+        <input matInput placeholder="City" value="North Sydney">
+      </mat-form-field>
+    </span>
+    <span class='AddressSpan'>
+      <mat-form-field class="FormInputWidth">
+        <input matInput placeholder="State" value="NSW">
+      </mat-form-field>
+    </span>
+    <span class='AddressSpan'>
+      <mat-form-field class="FormInputWidth">
+        <input matInput #postalCode maxlength="4" placeholder="Postal Code" value="2060">
+      </mat-form-field>
+    </span>
+
+  <button mat-flat-button id="submitJob" routerLink="/clientjob">Update</button>
+</form>
+
+</section>

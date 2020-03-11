@@ -1,0 +1,30 @@
+<section>
+<h1 id='headerTitle'>Add Job</h1>
+  <div id='AddJobDiv'>
+    <div class='AddJob'>
+      <span class="AddJobSpan">
+        <mat-form-field class="AddJobInput">
+          <mat-label>Client</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let Client of clients" [value]="Client.value">
+                {{Client.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div id="breaker"></div>
+        <mat-form-field class="JobTitle">
+          <input matInput placeholder="Job Title">
+        </mat-form-field>
+      </span>
+
+      <mat-form-field class="QuoteInput">
+       <span matPrefix>$ &nbsp;</span> <input matInput type="number" placeholder="Quote">
+      </mat-form-field>
+
+      <br>
+      <button mat-flat-button id="submitItem" routerLink="/home">Create</button>
+      <br>
+    </div>
+  </div>
+
+</section>

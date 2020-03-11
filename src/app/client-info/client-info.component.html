@@ -1,0 +1,29 @@
+<section>
+  <h1 id="headerTitle">Client Information</h1>
+    <div class="ClientInfo">
+      <mat-list class="ClientInfoList">
+        <mat-list-item class="ClientData"><strong>Name: &nbsp;</strong>John Appleseed</mat-list-item>
+        <mat-list-item class="ClientData"><strong>Phone Number: &nbsp;</strong>0412345678</mat-list-item>
+        <mat-list-item class="ClientData"><strong>Email: &nbsp;</strong>johnappleseed@gmail.com</mat-list-item>
+        <mat-list-item class="ClientData"><strong>Address: &nbsp;</strong>123 First Street, North Sydney, NSW, 2060</mat-list-item>
+      </mat-list>
+      <br>
+      <div class="ButtonDiv">
+        <button mat-flat-button id="EditItem" routerLink="/editclient">Edit</button>
+        <button mat-flat-button id="DeleteClient" (click)="CloseJob()">Delete</button>
+      </div>
+    </div>
+
+    <div class='ClientJobDiv'>
+      <button mat-button class='ClientJob' routerLink="/clientjob">
+        Kitchen Reconstruction
+      </button>
+    </div>
+
+
+    <div class='CreateJobButtonDiv'>
+      <button mat-button class='CreateJobButton' routerLink="/addjob">
+        Create Job
+      </button>
+    </div>
+</section>

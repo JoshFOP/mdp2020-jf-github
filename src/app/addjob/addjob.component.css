@@ -1,0 +1,52 @@
+section {
+  height: 100vh;
+}
+/* Nexts Jobs Elements START */
+#AddJobDiv {
+  padding-top: 10px;
+}
+
+.AddJob {
+  background-color: white;
+  border-radius: 25px;
+}
+
+#submitItem {
+  background-color: rgb(30,200,220);
+  color: white;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  width: 75px;
+  transition: 0.3s;
+}
+
+#submitItem:hover {
+  background-color: rgb(45,180,235);
+}
+
+.AddJobInput {
+  width: 50%;
+}
+
+.JobTitle {
+  width: 50%;
+}
+
+.AddJobSpan {
+  display: inline-flex;
+  width: 95%;
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+}
+
+#breaker {
+  width: 5px;
+}
+
+.QuoteInput {
+  margin: auto;
+  width: 95%;
+  display: block;
+}

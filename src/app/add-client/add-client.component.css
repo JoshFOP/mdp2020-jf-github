@@ -1,0 +1,31 @@
+.AddClientForm {
+  background-color: white;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.FormInputWidth {
+  width: 100%;
+
+}
+
+.AddressSpan {
+  display: inline-block;
+  width: 33.2%;
+}
+
+#submitClient {
+  background-color: rgb(30,200,220);
+  color: white;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  width: 75px;
+  transition: 0.3s;
+}
+
+#submitClient:hover {
+  background-color: rgb(45,180,235);
+}
+
+

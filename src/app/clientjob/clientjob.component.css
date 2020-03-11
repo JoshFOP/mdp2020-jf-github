@@ -1,0 +1,235 @@
+section {
+  
+}
+/* Client Info */
+.ClientInfo {
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  margin-bottom: 25px;
+}
+
+.ClientInfoList {
+  
+}
+
+.InfoHeading {
+  font-weight: bold;
+  margin-bottom: -25px;
+  margin-top: -10px;
+}
+
+.ClientData {
+  padding-top: 5px;
+  font-size: 15px;
+}
+
+.JobStatus {
+  padding-top: 5px;
+  font-size: 15px;
+  color: green;
+}
+
+/* Drop Down Menu */
+.PanelTitle {
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  margin: auto;
+}
+
+mat-expansion-panel {
+  border-radius: 25px !important;
+}
+
+/* To Do List wrapper*/
+.ToDoListDiv {
+  background-color: white;
+  border-radius: 25px;
+}
+
+/* Mat-List Items */
+.ToDoList {
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: lightgrey;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+/* Edit and Delete icons for to do list */
+.editItem {
+  float: right;
+  position: relative;
+  padding-bottom: 10px;
+  vertical-align: middle;
+  
+}
+
+/* Job Log Wrapper */
+.JobLogDiv {
+  background-color: white;
+  border-radius: 25px;
+}
+
+/* Job Log Mat-List */
+.JobLog {
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: lightgrey;
+  padding: 15px;
+  margin-bottom: 10px;
+  
+}
+
+/* New Item for Job Log */
+.NewItem {
+  padding-top: 5px;
+  width: 100%;
+}
+
+/* Submit Button for Job Log */
+#submitItem {
+  background-color: rgb(30,200,220);
+  color: white;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  width: 75px;
+  transition: 0.3s;
+}
+
+#submitItem:hover {
+  background-color: rgb(45,180,235);
+}
+
+.mat-divider {
+  margin-top: 20px;
+}
+
+/* Job Log */
+/* Job Log Input */
+.JobLogInput {
+  padding-top: 5px;
+  width: 50%;
+  
+}
+
+/* Job Log Date Input */
+.JobLogInputDate {
+  padding-top: 5px;
+  width: 50%;
+  padding-right: 5px;
+}
+
+/* Job Log Date and Hour Wrapper */
+.JobLogDH {
+  width: 100%;
+  display: inline-flex;
+  padding-top: 5px;
+
+}
+
+/* Job Log Wrapper */
+.JobLogWrapper {
+  margin: 2px;
+  width: 80%;
+  padding-right: 10px;
+  line-height: 1;
+}
+
+/* Expenses Table */
+.ExpensesTable {
+  width: 100%;
+}
+
+/* Expenses Table Cell */
+.tdCell {
+  text-align: center;
+  padding: 5px;
+}
+
+/* Expenses Edit Cell*/
+.EditCell {
+  padding: 5px;
+  border-right-style: none;
+  text-align: center;
+}
+
+/* Expenses Table */
+th, td {
+  border-right-style: solid;
+  border-right-width: 0.5px;
+  border-color: lightgrey;
+  text-align: center;
+}
+
+/* Edit and Delete Icon for Expenses Table */
+.editItemExp {
+  float: right;
+}
+
+/* Expenses Table Span to hold icons */
+.ExpensesSpan {
+  width: 100%;
+  display: inline-flex;
+  padding-top: 5px;
+}
+
+/* Quantity Input */
+.QtyInput {
+  padding-top: 5px;
+  width: 50%;
+  padding-right: 5px;
+}
+
+/* Item Cost Input */
+.ItemCost {
+  padding-top: 5px;
+  width: 50%;
+  
+}
+
+/* New Item Expenses Input*/
+.ItemExpenses {
+  width: 100%;
+}
+
+/* Close Job */
+
+#CloseItem {
+  background-color: rgb(220, 30, 30);
+  color: white;
+  border-radius: 25px;
+  transition: 0.3s;
+  text-align: center;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#CloseItem:hover {
+  background-color: rgb(235, 45, 45);
+}
+
+/* Edit Job */
+
+#EditItem {
+  background-color: rgb(30,200,220);
+  color: white;
+  border-radius: 25px;
+  width: 95px;
+  transition: 0.3s;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#EditItem:hover {
+  background-color: rgb(45,180,235);
+}
+
+.ButtonDiv {
+  text-align: center;
+
+}

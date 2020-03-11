@@ -1,0 +1,52 @@
+<section>
+	<mat-toolbar>
+		<button class="menubutton" mat-icon-button (click)="snav.toggle()">
+            <mat-icon class="menuicon">menu</mat-icon>
+  </button>
+		<div class="NavTitle">
+      Carpentry Assistant
+		</div>
+
+	</mat-toolbar>
+
+	<mat-sidenav-container hasBackdrop="true">
+
+		<mat-sidenav #snav mode="'over'" [fixedInViewport]="true">
+			<!--MENU ITEMS =====================1=============  -->
+			<mat-nav-list>
+
+				<mat-list-item routerLink="/home" (click)="close()">
+					<mat-icon matListIcon>home</mat-icon>
+					Home
+				</mat-list-item>
+
+        <mat-list-item routerLink="/clientlist" (click)="close()">
+					<mat-icon matListIcon>person</mat-icon>
+					Clients
+				</mat-list-item>
+
+        <mat-list-item routerLink="/addjob" (click)="close()">
+					<mat-icon matListIcon>add</mat-icon>
+					Add Job
+				</mat-list-item>
+
+        <mat-list-item routerLink="/closedjobs" (click)="close()">
+					<mat-icon matListIcon>done</mat-icon>
+					Closed Jobs
+				</mat-list-item>
+
+				<mat-list-item (click)="snav.close()">
+					<mat-icon matListIcon>cancel</mat-icon>
+					Close
+				</mat-list-item>
+
+			</mat-nav-list>
+
+		</mat-sidenav>
+
+		<!-- Contents - Where other pages are displayed -->
+		<mat-sidenav-content>
+			<router-outlet></router-outlet>
+		  </mat-sidenav-content>
+	  </mat-sidenav-container>
+</section>
