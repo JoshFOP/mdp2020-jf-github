@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
+import { ClientsService } from '../services/clients.service';
+import { JobsService } from '../services/jobs.service';
 
 export interface Client {
   value: string;
@@ -14,16 +16,42 @@ export interface Client {
 
 export class AddjobComponent implements OnInit {
 
-  clients: Client[] = [
-      {value: 'JohnAppleseed-0', viewValue: 'John Appleseed'},
-      {value: 'BobSmith-1', viewValue: 'Bob Smith'},
+  constructor(
+    private fb: FormBuilder,
+    private js: JobsService,
+    private cs: ClientsService
+  ) { }
 
-    ];
+  // People Variable to hold all people
+  clients: any;
+  jobs: any;
+  jobsForm: FormGroup;
 
-  constructor() { }
+  ngOnInit(): void {
+    // Call PeopleService Method "getPeople" and assign all data to 'people'
+    this.clients = this.cs.getClient() 
+    this.jobs = this.js.getJob() 
 
-  ngOnInit() {
+    this.jobsForm = this.fb.group(
+      {
+        clientJob: [null],
+        JobTitle: [null],
+        quote: [null],
+        JobStatus: [null],
+        ToDoList: [null],
+        JobLog: [null],
+        ExpensesLog: [null],
+        
+      }
+    );
   }
 
-}
+  submit(): void {  
+    this.js.addJob(this.jobsForm.value);
+    alert("Data added to database" ) ;
+    this.jobsForm.reset();
+    }
+  }
+
+
 

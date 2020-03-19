@@ -1,23 +1,22 @@
 <section>
   <!-- Client Info START -->
-    <h1 id="headerTitle">Kitchen Reconstruction</h1>
+    <h1 id="headerTitle">{{jobs[id].JobTitle}}</h1>
     <div class="ClientInfo">
-      <mat-list class="ClientInfoList">
+      <mat-list class="ClientInfoList" >
         
         <mat-list-item class="InfoHeading">Name: </mat-list-item>
-          <mat-list-item class="ClientData">John Appleseed </mat-list-item>
-            
+          <mat-list-item class="ClientData"> {{clients[jobs[id].clientJob].name}} </mat-list-item>
         <mat-list-item class="InfoHeading">Phone Number: </mat-list-item>
-          <mat-list-item class="ClientData">0412345678 </mat-list-item>
+          <mat-list-item class="ClientData">{{clients[jobs[id].clientJob].Pnum}} </mat-list-item>
 
         <mat-list-item class="InfoHeading">Email: </mat-list-item>
-          <mat-list-item class="ClientData">johnappleseed@gmail.com </mat-list-item>
+          <mat-list-item class="ClientData">{{clients[jobs[id].clientJob].Email}} </mat-list-item>
 
         <mat-list-item class="InfoHeading">Address: </mat-list-item>
-          <mat-list-item class="ClientData">123 First Street, North Sydney, NSW, 2060 </mat-list-item>
+          <mat-list-item class="ClientData">{{clients[jobs[id].clientJob].Add1}} {{clients[jobs[id].clientJob].Add2}} {{clients[jobs[id].clientJob].city}}, {{clients[jobs[id].clientJob].state}}, {{clients[jobs[id].clientJob].Pcode}} </mat-list-item>
 
         <mat-list-item class="InfoHeading">Quote: </mat-list-item>
-          <mat-list-item class="ClientData">$4000 </mat-list-item>
+          <mat-list-item class="ClientData">${{jobs[id].quote}}</mat-list-item>
 
         <mat-list-item class="InfoHeading">Job Status: </mat-list-item>
           <mat-list-item class="JobStatus">Open</mat-list-item>
@@ -44,8 +43,8 @@
 
       <!-- Mat-List: This is where the to do list will go -->
       <!-- SUGGESTION: Each job could have an hour counter. E.g: Fix deck - individual hours -->
-      <mat-list *ngFor="let job of JobsForClient" class="ToDoList">
-        {{job}}
+      <mat-list *ngFor="let ToDo of JobsForClient" class="ToDoList">
+        {{ToDo}}
         <span class="editItem">
           <mat-icon><strong>check</strong></mat-icon>
           <mat-icon>edit</mat-icon>

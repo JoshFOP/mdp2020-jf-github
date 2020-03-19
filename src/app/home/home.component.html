@@ -18,17 +18,12 @@
 
 <h1 id='headerTitle'>Current Jobs</h1>
 <!-- Client Jobs START -->
-<div class='ClientJobsDiv'>
-  <button mat-button class='ClientJobs' routerLink="/clientjob">
-   John Appleseed - Kitchen Renovation
+<div class='ClientJobsDiv' *ngFor="let item of jobs; let i=index">
+  <button mat-button class='ClientJobs' [routerLink]="['/clientjob', i]">
+   {{clients[item.clientJob].name}} - {{item.JobTitle}}
   </button>
 </div>
 
-<div class='ClientJobsDiv'>
-  <button mat-button class='ClientJobs'>
-    Bob Smith - Front Door Replacement
-  </button>
-</div>
 <!-- Client Jobs END -->
 
  <button mat-fab class='NewJobButton' routerLink="/addjob">+</button>
