@@ -1,47 +1,45 @@
 <section>
   <h1 id='headerTitle'>Edit Client Info</h1>
 
-  <form class="AddJobForm">
+  <form class="EditClientForm" [formGroup]="clientsForm" (ngSubmit)="submitEdit()">
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Name" value="John Appleseed">
+      <input matInput placeholder="Name" formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
       <span matPrefix>+04 &nbsp;</span>
-      <input type="tel" matInput placeholder="Phone Number" value="0412345678">
+      <input type="tel" matInput placeholder="Phone Number" formControlName="Pnum">
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Email" dividerColor="warn" value="johnappleseed@gmail.com">
+      <input matInput placeholder="Email" dividerColor="warn" formControlName="Email">
       
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address" value="123 First Street">
+      <input matInput placeholder="Address" formControlName="Add1">
     </mat-form-field>
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address 2">
+      <input matInput placeholder="Address 2" formControlName="Add2">
     </mat-form-field>
 
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput placeholder="City" value="North Sydney">
+        <input matInput placeholder="City" formControlName="city">
       </mat-form-field>
     </span>
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput placeholder="State" value="NSW">
+        <input matInput placeholder="State" formControlName="state">
       </mat-form-field>
     </span>
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput #postalCode maxlength="4" placeholder="Postal Code" value="2060">
+        <input matInput #postalCode maxlength="4" placeholder="Postal Code" formControlName="Pcode">
       </mat-form-field>
     </span>
 
-  <button mat-flat-button id="submitJob" routerLink="/clientjob">Update</button>
+  <button mat-flat-button id="submitClient">Update</button>
 </form>
-
-</section>
