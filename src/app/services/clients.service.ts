@@ -10,6 +10,7 @@ clients=[];
     */
     if (localStorage.clients == null ) {
         localStorage.setItem('clients', JSON.stringify(this.clients));
+        //localStorage.setItem('maxclientid', "0");
     }
 
   } //end constructor
@@ -23,6 +24,9 @@ clients=[];
   // this FUNCTION accepts 'one' parameter 'person'
   // and pushes this parameter into the peole array
   addClient(Client): void {
+    //let id = JSON.parse(localStorage.getItem('maxclientid')) + 1;
+    //localStorage.setItem('maxclientid', toString.(id));
+    //Client.id = id;
     let clients = JSON.parse(localStorage.getItem('clients'));
     clients.push(Client);
     localStorage.setItem('clients', JSON.stringify(clients));
@@ -48,13 +52,17 @@ clients=[];
     if (typeof addValues.name === 'undefined' || addValues.name == null || addValues.name == "") {
       this.valid = "nameFail";
     }
+  // search for pre-existing names.
+   /*else if (typeof addValues.name === 'undefined' || addValues.name == null ||                addValues.name == "") {
+      this.valid = "nameFailTaken";
+    }*/
 
     else if (typeof addValues.Pnum === 'undefined' || addValues.Pnum == null || addValues.Pnum == "") {
       this.valid = "PnumFail";
     }
 
-    else if (typeof addValues.Email === 'undefined' || addValues.Email == null || addValues.Email == "") {
-      this.valid = "EmailFail";
+    else if (addValues.Pnum.toString().length != 10) {
+      this.valid = "PnumFailInvalid";
     }
 
     else if (typeof addValues.Add1 === 'undefined' || addValues.Add1 == null || addValues.Add1 == "") {

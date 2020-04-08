@@ -8,15 +8,14 @@
     <mat-form-field class="FormInputWidth">
       <input matInput placeholder="Name" formControlName="name">
     </mat-form-field>
-
+   <!-- Allows user to enter "e" for some reason -->
     <mat-form-field class="FormInputWidth">
-      <span matPrefix>+04 &nbsp;</span>
-      <input type="tel" matInput placeholder="Phone Number" formControlName="Pnum">
-      <mat-icon matSuffix>mode_edit</mat-icon>
+      <input type="tel" matInput placeholder="Phone Number"  maxlength="10" formControlName="Pnum">
+      <mat-icon matSuffix>phone</mat-icon>
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Email" dividerColor="warn" formControlName="Email">
+      <input matInput placeholder="Email (optional)" dividerColor="warn" formControlName="Email">
       
     </mat-form-field>
 
@@ -24,7 +23,7 @@
       <input matInput placeholder="Address" formControlName="Add1">
     </mat-form-field>
     <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address 2" formControlName="Add2">
+      <input matInput placeholder="Address 2 (optional)" formControlName="Add2">
     </mat-form-field>
 
     <span class='AddressSpan'>

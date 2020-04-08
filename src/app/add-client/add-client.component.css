@@ -28,4 +28,6 @@
   background-color: rgb(45,180,235);
 }
 
-
+.errormessage {
+  color: red;
+}

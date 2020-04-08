@@ -64,15 +64,15 @@ export class AddClientComponent implements OnInit {
 
     }
     if (this.valid == "nameFail") {
-      this.errorMessage = "* Name entry has an error";
+      this.errorMessage = "* You must enter a name";
     }
 
     else if (this.valid == "PnumFail") {
-      this.errorMessage = "* Phone Number entry has an error";
+      this.errorMessage = "* You must enter a phone number";
     }
 
-    else if (this.valid == "EmailFail") {
-      this.errorMessage = "* Email entry has an error";
+    else if (this.valid == "PnumFailInvalid") {
+      this.errorMessage = "* You must enter a valid phone number";
     }
 
     else if (this.valid == "Add1Fail") {
