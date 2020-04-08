@@ -7,7 +7,7 @@
         <mat-form-field class="AddJobInput">
           <mat-label>Client</mat-label>
             <mat-select formControlName="clientJob">
-              <mat-option *ngFor="let client of clients; let i=index" [value]="[i]" >
+              <mat-option *ngFor="let client of clients; let i=index" [value]="client.id" >
                 {{client.name}}
               </mat-option>
             </mat-select>

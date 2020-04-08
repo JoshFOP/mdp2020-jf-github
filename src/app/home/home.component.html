@@ -18,6 +18,7 @@
 
 <h1 id='headerTitle'>Current Jobs</h1>
 <!-- Client Jobs START -->
+<!-- Need to fix id here -->
 <div class='ClientJobsDiv' *ngFor="let item of jobs; let i=index">
   <button mat-button class='ClientJobs' [routerLink]="['/clientjob', i]">
    {{clients[item.clientJob].name}} - {{item.JobTitle}}
