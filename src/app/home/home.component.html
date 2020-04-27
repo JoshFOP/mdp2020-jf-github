@@ -21,7 +21,7 @@
 <!-- Need to fix id here -->
 <div class='ClientJobsDiv' *ngFor="let item of jobs; let i=index">
   <button mat-button class='ClientJobs' [routerLink]="['/clientjob', i]">
-   {{clients[item.clientJob].name}} - {{item.JobTitle}}
+   {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
   </button>
 </div>
 

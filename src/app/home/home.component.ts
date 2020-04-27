@@ -21,6 +21,7 @@ export class HomeComponent {
   // People Variable to hold all people
   jobs: any;
   clients:any;
+  found: any;
 
   ngOnInit(): void {
     // Call PeopleService Method "getPeople" and assign all data to 'people'

@@ -5,15 +5,15 @@
       <mat-list class="ClientInfoList" >
         
         <mat-list-item class="InfoHeading">Name: </mat-list-item>
-          <mat-list-item class="ClientData"> {{clients[jobs[id].clientJob].name}} </mat-list-item>
+          <mat-list-item class="ClientData"> {{cs.getClientById(jobs[id].clientJob).name}} </mat-list-item>
         <mat-list-item class="InfoHeading">Phone Number: </mat-list-item>
-          <mat-list-item class="ClientData">{{clients[jobs[id].clientJob].Pnum}} </mat-list-item>
+          <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Pnum}} </mat-list-item>
 
         <mat-list-item class="InfoHeading">Email: </mat-list-item>
-          <mat-list-item class="ClientData">{{clients[jobs[id].clientJob].Email}} </mat-list-item>
+          <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Email}} </mat-list-item>
 
         <mat-list-item class="InfoHeading">Address: </mat-list-item>
-          <mat-list-item class="ClientData">{{clients[jobs[id].clientJob].Add1}} {{clients[jobs[id].clientJob].Add2}} {{clients[jobs[id].clientJob].city}}, {{clients[jobs[id].clientJob].state}}, {{clients[jobs[id].clientJob].Pcode}} </mat-list-item>
+          <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Add1}} {{cs.getClientById(jobs[id].clientJob).Add2}} {{cs.getClientById(jobs[id].clientJob).city}}, {{cs.getClientById(jobs[id].clientJob).state}}, {{cs.getClientById(jobs[id].clientJob).Pcode}} </mat-list-item>
 
         <mat-list-item class="InfoHeading">Quote: </mat-list-item>
           <mat-list-item class="ClientData">${{jobs[id].quote}}</mat-list-item>

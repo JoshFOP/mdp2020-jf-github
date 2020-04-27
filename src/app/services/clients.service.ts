@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { JobsService } from '../services/jobs.service';
 
 @Injectable()
 export class ClientsService {
 clients=[];
   valid: any;
-  constructor() {
+  constructor(private js: JobsService) {
     /* LOCALSTORAGE
       Saves clients object into local storage
     */
@@ -38,6 +39,18 @@ clients=[];
     clients[id] = Client;
     localStorage.setItem('clients', JSON.stringify(clients));
     
+  }
+
+  getClientById(id): void {
+    let clients = this.getClient();
+    var found = null;
+    for (var i=0; i<clients.length; i++) {
+      if (clients[i].id == id && found == null) {
+        found = clients[i];
+      }
+    }
+    return found;
+    console.log(found);
   }
 
   deleteClient(id): void {
