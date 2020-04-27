@@ -2,9 +2,10 @@
 
   <h1 id='headerTitle'>Closed Jobs</h1>
   <!-- Client Jobs START -->
-  <div class='ClosedClientJobsDiv'>
-    <button mat-button class='ClosedClientJobs' routerLink="/clientjob">
-      John Peters
+
+  <div class='ClosedClientJobsDiv' *ngFor="let item of jobs; let i=index">
+    <button mat-button *ngIf="jobs[i].JobStatus == false" class='ClosedClientJobs' [routerLink]="['/clientjob', i]">
+    {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
     </button>
   </div>
 </section>

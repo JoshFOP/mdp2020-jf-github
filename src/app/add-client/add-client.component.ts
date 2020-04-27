@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { ClientsService } from '../services/clients.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-client',
@@ -16,7 +17,9 @@ export class AddClientComponent implements OnInit {
   // Create instances of FormBuilder (fb) and PeopleServices (ps)
   constructor(
     private fb: FormBuilder,
-    private cs: ClientsService
+    private cs: ClientsService,
+    private router: Router
+    
   ) { }
 
 
@@ -90,6 +93,6 @@ export class AddClientComponent implements OnInit {
     else if (this.valid == "PcodeFail") {
       this.errorMessage = "* Postal Code entry has an error";
     }    
+  this.router.navigate(['/clientlist']);
   }
-
 }

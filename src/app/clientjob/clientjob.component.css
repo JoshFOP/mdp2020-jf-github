@@ -24,10 +24,16 @@ section {
   font-size: 15px;
 }
 
-.JobStatus {
+.JobStatusOpen {
   padding-top: 5px;
   font-size: 15px;
   color: green;
+}
+
+.JobStatusClosed {
+  padding-top: 5px;
+  font-size: 15px;
+  color: red;
 }
 
 /* Drop Down Menu */
@@ -209,8 +215,22 @@ th, td {
   margin-left: 5px;
 }
 
+#ReopenItem {
+  background-color: rgb(30, 220, 30);
+  color: white;
+  border-radius: 25px;
+  transition: 0.3s;
+  text-align: center;
+  display: inline-block;
+  margin-left: 5px;
+}
+
 #CloseItem:hover {
   background-color: rgb(235, 45, 45);
+}
+
+#ReopenItem:hover {
+  background-color: rgb(45, 235, 45);
 }
 
 /* Edit Job */

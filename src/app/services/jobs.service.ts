@@ -9,7 +9,7 @@ jobs=[];
     Local storage stores data as key-value pairs, and the values are stored as "strings". 
     So, if we must JSON.stringify when we put them into LocalStorage and we must 'parse' the string into a valid object. when we retrieve it.
     */
-    if (localStorage.jobs == null ) {
+    if (localStorage.jobs == null) {
         localStorage.setItem('jobs', JSON.stringify(this.jobs));
     }
 
@@ -24,6 +24,7 @@ jobs=[];
   // this FUNCTION accepts 'one' parameter 'person'
   // and pushes this parameter into the peole array
   addJob(Job): void {
+    Job.JobStatus = true;
     let jobs = JSON.parse(localStorage.getItem('jobs'));
     jobs.push(Job);
     localStorage.setItem('jobs', JSON.stringify(jobs));
@@ -32,9 +33,15 @@ jobs=[];
 
   //Removed the edit function
 
-  deleteJob(id): void {
+  closeJob(id): void {
     let jobs = this.getJob()
-    jobs.splice(id, 1);
+    jobs[id].JobStatus = false;
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }
+
+  reopenJob(id): void {
+    let jobs = this.getJob()
+    jobs[id].JobStatus = true;
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 

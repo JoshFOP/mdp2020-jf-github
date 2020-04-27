@@ -13,10 +13,11 @@ import { JobsService } from '../services/jobs.service';
 export class HomeComponent {
   todaysJobData = 'John Appleseed';
 
+
   
 
   constructor(private js: JobsService,private cs: ClientsService) {
-  }
+  } 
 
   // People Variable to hold all people
   jobs: any;
@@ -26,7 +27,7 @@ export class HomeComponent {
   ngOnInit(): void {
     // Call PeopleService Method "getPeople" and assign all data to 'people'
     this.jobs = this.js.getJob()
-    this.clients=this.cs.getClient() 
+    this.clients=this.cs.getClient()
     
   } //end ngOnInit()
 

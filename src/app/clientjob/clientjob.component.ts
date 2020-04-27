@@ -3,6 +3,8 @@ import { ClientsService } from '../services/clients.service';
 import { JobsService } from '../services/jobs.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-clientjob',
@@ -49,6 +51,21 @@ export class ClientjobComponent implements OnInit {
     var closejobcon = confirm("Are you sure you want to close this job?");
     if (closejobcon == true) {
       alert("Job has been closed");
+      this.js.closeJob(this.id);
+      this.router.navigate(['/home']);
+    }
+    else {
+      alert("Cancelled")
+    }
+    
+  }
+
+  ReopenJob() {
+    var closejobcon = confirm("Are you sure you want to reopen this job?");
+    if (closejobcon == true) {
+      alert("Job has been reopened");
+      this.js.reopenJob(this.id);
+      this.router.navigate(['/home'])
     }
     else {
       alert("Cancelled")
@@ -60,7 +77,8 @@ export class ClientjobComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private cs: ClientsService,
-    private js: JobsService,) { }
+    private js: JobsService,
+    private router: Router) { }
 
   // Make my 'peopleForm' a FormGroup
   jobsForm: FormGroup;

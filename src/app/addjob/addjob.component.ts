@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { ClientsService } from '../services/clients.service';
 import { JobsService } from '../services/jobs.service';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 export interface Client {
   value: string;
@@ -19,8 +21,9 @@ export class AddjobComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private js: JobsService,
-    private cs: ClientsService
-  ) { }
+    private cs: ClientsService,
+    private router: Router)
+   { }
 
   // People Variable to hold all people
   clients: any;
@@ -46,10 +49,11 @@ export class AddjobComponent implements OnInit {
     );
   }
 
-  submit(): void {  
+  submit(): void {   
     this.js.addJob(this.jobsForm.value);
     alert("Data added to database" ) ;
     this.jobsForm.reset();
+    this.router.navigate(['/home'])
     }
   }
 

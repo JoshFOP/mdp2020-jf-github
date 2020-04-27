@@ -20,7 +20,7 @@
 <!-- Client Jobs START -->
 <!-- Need to fix id here -->
 <div class='ClientJobsDiv' *ngFor="let item of jobs; let i=index">
-  <button mat-button class='ClientJobs' [routerLink]="['/clientjob', i]">
+  <button mat-button *ngIf="jobs[i].JobStatus == true" class='ClientJobs' [routerLink]="['/clientjob', i]">
    {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
   </button>
 </div>
