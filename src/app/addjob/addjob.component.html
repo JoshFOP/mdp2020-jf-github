@@ -21,7 +21,19 @@
       <mat-form-field class="QuoteInput">
        <span matPrefix>$ &nbsp;</span> <input matInput type="number" placeholder="Quote" formControlName="quote">
       </mat-form-field>
+   <span class="DateSpan">
+      <mat-form-field class="StartDate">
+          <input matInput [matDatepicker]="Startpicker" placeholder="Start Date">
+          <mat-datepicker-toggle matSuffix [for]="Startpicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #Startpicker></mat-datepicker>
+      </mat-form-field>
 
+      <mat-form-field class="FinishDate">
+          <input matInput [matDatepicker]="Finishpicker" placeholder="Finish Date">
+          <mat-datepicker-toggle matSuffix [for]="Finishpicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #Finishpicker></mat-datepicker>
+      </mat-form-field>
+   </span>
       <br>
       <button mat-flat-button id="submitItem">Create</button>
       <br>

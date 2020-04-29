@@ -21,6 +21,12 @@
         <mat-list-item class="InfoHeading">Job Status: </mat-list-item>
           <mat-list-item *ngIf="jobs[id].JobStatus == true" class="JobStatusOpen">Open</mat-list-item>
           <mat-list-item *ngIf="jobs[id].JobStatus == false" class="JobStatusClosed">Closed</mat-list-item>
+        
+         <mat-list-item class="InfoHeading">Date Started: </mat-list-item>
+          <mat-list-item class="ClientData"></mat-list-item>
+
+        <mat-list-item class="InfoHeading">Date Due: </mat-list-item>
+         <mat-list-item class="ClientData"></mat-list-item>
 
         
       </mat-list>

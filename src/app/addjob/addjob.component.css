@@ -50,3 +50,19 @@ section {
   width: 95%;
   display: block;
 }
+
+.StartDate {
+  width: 50%;
+}
+
+.FinishDate {
+  width: 50%;
+}
+
+.DateSpan {
+  display: inline-flex;
+  width: 95%;
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+}
