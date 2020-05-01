@@ -40,6 +40,8 @@ export class AddjobComponent implements OnInit {
         clientJob: [null],
         JobTitle: [null],
         quote: [null],
+        startDate: [null],
+        finishDate: [null],
         JobStatus: [null],
         ToDoList: [null],
         JobLog: [null],

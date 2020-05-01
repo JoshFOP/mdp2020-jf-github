@@ -23,13 +23,13 @@
       </mat-form-field>
    <span class="DateSpan">
       <mat-form-field class="StartDate">
-          <input matInput [matDatepicker]="Startpicker" placeholder="Start Date">
+          <input matInput [matDatepicker]="Startpicker" placeholder="Start Date" formControlName="startDate">
           <mat-datepicker-toggle matSuffix [for]="Startpicker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #Startpicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="FinishDate">
-          <input matInput [matDatepicker]="Finishpicker" placeholder="Finish Date">
+          <input matInput [matDatepicker]="Finishpicker" placeholder="Finish Date" formControlName="finishDate">
           <mat-datepicker-toggle matSuffix [for]="Finishpicker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #Finishpicker></mat-datepicker>
       </mat-form-field>

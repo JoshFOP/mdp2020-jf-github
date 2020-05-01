@@ -23,10 +23,10 @@
           <mat-list-item *ngIf="jobs[id].JobStatus == false" class="JobStatusClosed">Closed</mat-list-item>
         
          <mat-list-item class="InfoHeading">Date Started: </mat-list-item>
-          <mat-list-item class="ClientData"></mat-list-item>
+          <mat-list-item class="ClientData">{{jobs[id].startDate | date :'dd/MM/yyyy'}}</mat-list-item>
 
         <mat-list-item class="InfoHeading">Date Due: </mat-list-item>
-         <mat-list-item class="ClientData"></mat-list-item>
+         <mat-list-item class="ClientData">{{jobs[id].finishDate | date :'dd/MM/yyyy'}}</mat-list-item>
 
         
       </mat-list>
