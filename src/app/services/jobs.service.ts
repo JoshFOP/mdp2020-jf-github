@@ -45,6 +45,12 @@ jobs=[];
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
+  addToDoList(Job, id): void {
+    let jobs = JSON.parse(localStorage.getItem('jobs'));
+    jobs[id] = Job;
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }
+
     
 
     

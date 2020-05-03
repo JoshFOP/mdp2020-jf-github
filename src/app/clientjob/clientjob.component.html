@@ -51,24 +51,25 @@
 
       <!-- Mat-List: This is where the to do list will go -->
       <!-- SUGGESTION: Each job could have an hour counter. E.g: Fix deck - individual hours -->
-      <mat-list *ngFor="let ToDo of JobsForClient" class="ToDoList">
-        {{ToDo}}
+      <mat-list *ngFor="let toDo of jobs[id].ToDoList; let i=index;" class="ToDoListClass">
+        <mat-list-item class="ToDoListItem">{{toDo}}
         <span class="editItem">
           <mat-icon><strong>check</strong></mat-icon>
-          <mat-icon>edit</mat-icon>
-          <mat-icon>delete</mat-icon>
+          <mat-icon (click)="editToDoList(i)">edit</mat-icon>
+          <mat-icon (click)="deleteToDoList(i)">delete</mat-icon>
         </span>
+        </mat-list-item>
       </mat-list>
       <!-- Mat-List END -->
-
       <mat-divider></mat-divider>
 
-      <form>
+      <form (submit)="addTodo()">
         <mat-form-field class="NewItem">
-          <input matInput placeholder="New Item">
+          <input matInput placeholder="New Item" (keyup.enter)="newToDoItem=''" name="newToDoItem" [(ngModel)]="newToDoItem" value="{{toDoListEdit}}">
         </mat-form-field>
 
-        <button mat-flat-button id="submitItem">Add</button>
+        <button mat-flat-button *ngIf="!editValue" id="submitItem" type="submit" [disabled]="newToDoItem===''">Add</button>
+        <button mat-flat-button *ngIf="editValue" id="submitItem" type="submit" [disabled]="newToDoItem===''">Update</button>
       </form>
     </div>
     </mat-expansion-panel>

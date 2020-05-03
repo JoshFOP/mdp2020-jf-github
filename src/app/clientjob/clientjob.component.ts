@@ -12,14 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./clientjob.component.css']
 })
 export class ClientjobComponent implements OnInit {
-// To Do List START
-  JobsForClient: string[] = [
-    'Install Tiles', 
-    'Install Bench', 
-    'Remove Cabinet', 
-// To Do List END
-
-    ];
 // Job Log START
   DateLog: string[] = [
     '20/11/19',
@@ -78,7 +70,10 @@ export class ClientjobComponent implements OnInit {
     private fb: FormBuilder,
     private cs: ClientsService,
     private js: JobsService,
-    private router: Router) { }
+    private router: Router) { 
+      this.newToDoItem = '';
+      this.toDoItems = [];
+    }
 
   // Make my 'peopleForm' a FormGroup
   jobsForm: FormGroup;
@@ -89,7 +84,95 @@ export class ClientjobComponent implements OnInit {
   //people array
   jobs: any;
   clients: any;
+  //To Do List
+  savedToDo: any;
+  newToDoItem: string;
+  toDoItems: any;
+  savedToDoItems: any;
+  editValue: boolean = false;
+  toDoListEdit: any;
+
+  addTodo(event, id) {
+      if(this.jobs[this.id].ToDoList == null) {
+        this.toDoItems.push(this.newToDoItem);
+        console.log(this.jobs[this.id].ToDoList);
+        this.newToDoItem = '';
+        this.savedToDoItems = this.toDoItems;
+        this.toDoItems = '';
+        this.jobsForm.setValue({        
+          clientJob: this.jobs[this.id].clientJob,
+          JobTitle: this.jobs[this.id].JobTitle,
+          quote: this.jobs[this.id].quote,
+          startDate: this.jobs[this.id].startDate,
+          finishDate: this.jobs[this.id].finishDate,
+          JobStatus: this.jobs[this.id].JobStatus,
+          ToDoList: this.savedToDoItems,
+          JobLog: this.jobs[this.id].JobLog,
+          ExpensesLog: this.jobs[this.id].ExpensesLog,
+          });
+        console.log(this.savedToDoItems);
+        this.SubmitToDoList();
+      }
+      else {
+        let tdlJobsArray = this.jobs[this.id].ToDoList;
+        this.savedToDoItems = tdlJobsArray.concat(this.newToDoItem);
+        console.log(this.jobs[this.id].ToDoList);
+        this.newToDoItem = '';
+        this.jobsForm.setValue({        
+          clientJob: this.jobs[this.id].clientJob,
+          JobTitle: this.jobs[this.id].JobTitle,
+          quote: this.jobs[this.id].quote,
+          startDate: this.jobs[this.id].startDate,
+          finishDate: this.jobs[this.id].finishDate,
+          JobStatus: this.jobs[this.id].JobStatus,
+          ToDoList: this.savedToDoItems,
+          JobLog: this.jobs[this.id].JobLog,
+          ExpensesLog: this.jobs[this.id].ExpensesLog,
+        });
+        this.SubmitToDoList();
+      }
+    }
+
+    deleteToDoList(index) {
+      let savedToDoList = this.jobs[this.id].ToDoList;
+      savedToDoList.splice(index, 1);
+      this.jobsForm.setValue({        
+        clientJob: this.jobs[this.id].clientJob,
+        JobTitle: this.jobs[this.id].JobTitle,
+        quote: this.jobs[this.id].quote,
+        startDate: this.jobs[this.id].startDate,
+        finishDate: this.jobs[this.id].finishDate,
+        JobStatus: this.jobs[this.id].JobStatus,
+        ToDoList: savedToDoList,
+        JobLog: this.jobs[this.id].JobLog,
+        ExpensesLog: this.jobs[this.id].ExpensesLog,
+        });
+        this.SubmitToDoList();
+    }
   
+    editToDoList(index) {
+      this.editValue = true;
+      let savedToDoList = this.jobs[this.id].ToDoList;
+      this.toDoListEdit = savedToDoList[index];
+      
+    }
+
+    submitEditToDoList(){
+      this.toDoListEdit
+      let savedToDoList 
+      this.jobsForm.setValue({        
+        clientJob: this.jobs[this.id].clientJob,
+        JobTitle: this.jobs[this.id].JobTitle,
+        quote: this.jobs[this.id].quote,
+        startDate: this.jobs[this.id].startDate,
+        finishDate: this.jobs[this.id].finishDate,
+        JobStatus: this.jobs[this.id].JobStatus,
+        ToDoList: savedToDoList ,
+        JobLog: this.jobs[this.id].JobLog,
+        ExpensesLog: this.jobs[this.id].ExpensesLog,
+        });
+        this.SubmitToDoList();
+    }
 
   ngOnInit() {
     // Call the PeopleService Method 'getPeopleArray'
@@ -102,24 +185,33 @@ export class ClientjobComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = + params['id']; // (+) converts string 'id' to a number
     });
-
+      this.initialiseForm(this.jobs, this.id); // Creates a form 
     } // end ngOnInit
-
-
-    openJobPage(id: number): void {
-     
-        // IMPORTANT: this 'id' will be passed to the Dialog box as variable named "data"  
-        data: id;    
-   
-    }  //end dialogConfig
     
-    deleteClient(id) {
-      if (confirm("Are you sure you want to delete this client?")) {
-        console.log("in delete :" + id)
-        this.cs.deleteClient(this.id);
+    SubmitToDoList() {
+    // Grap the edited values from the Form
+    const jobsform = this.jobsForm.value;
+    // Call the PeopleService Method 'editPerson'
+    // Pass it two paramters 1.Edited form values  and 2. Current ID of the person
+    // clicked on in the List
+    this.js.addToDoList(jobsform, this.id);
+    this.jobs = this.js.getJob();
+  }
+    initialiseForm(jobs, id): void {
+    this.jobsForm = this.fb.group(
+      {
+        clientJob: [this.jobs[id].clientJob],
+        JobTitle: [this.jobs[id].JobTitle],
+        quote: [this.jobs[id].quote],
+        startDate: [this.jobs[id].startDate],
+        finishDate: [this.jobs[id].finishDate],
+        JobStatus: [this.jobs[id].JobStatus],
+        ToDoList: [this.jobs[id].ToDoList],
+        JobLog: [this.jobs[id].JobLog],
+        ExpensesLog: [this.jobs[id].ExpensesLog],
       }
-      
-    }
+    );
+}
 }
 
 
