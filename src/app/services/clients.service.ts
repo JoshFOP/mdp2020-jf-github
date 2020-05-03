@@ -93,7 +93,7 @@ clients=[];
     else if (typeof addValues.Pcode === 'undefined' || addValues.Pcode == null || addValues.Pcode == "") {
       this.valid = "PcodeFail";
     }
-    console.log("fName is " + addValues.fName); //debugging output
+    console.log("name is " + addValues.name); //debugging output
     console.log("valid is inside check " + this.valid); //debugging output
 
     return this.valid;
