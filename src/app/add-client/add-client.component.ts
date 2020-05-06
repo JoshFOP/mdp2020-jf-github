@@ -64,6 +64,7 @@ export class AddClientComponent implements OnInit {
       this.cs.addClient(this.clientsForm.value);
       alert("Data added to database" ) ;
       this.clientsForm.reset();
+      this.router.navigate(['/clientlist']);
 
     }
     if (this.valid == "nameFail") {
@@ -93,6 +94,5 @@ export class AddClientComponent implements OnInit {
     else if (this.valid == "PcodeFail") {
       this.errorMessage = "* Postal Code entry has an error";
     }    
-  this.router.navigate(['/clientlist']);
   }
 }
