@@ -91,7 +91,7 @@ export class ClientjobComponent implements OnInit {
   editValue: boolean = false;
   toDoListEdit: any;
   editIndex: any;
-  editedToDoListItem: any;
+  //To Do List end
 
   addTodo(event, id) {
       if(this.jobs[this.id].ToDoList == null) {
