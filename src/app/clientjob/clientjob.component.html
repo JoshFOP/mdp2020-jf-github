@@ -63,13 +63,20 @@
       <!-- Mat-List END -->
       <mat-divider></mat-divider>
 
-      <form (submit)="addTodo()">
+      <form *ngIf="!editValue" (submit)="addTodo()">
         <mat-form-field class="NewItem">
-          <input matInput placeholder="New Item" (keyup.enter)="newToDoItem=''" name="newToDoItem" [(ngModel)]="newToDoItem" value="{{toDoListEdit}}">
+          <input matInput placeholder="New Item" (keyup.enter)="newToDoItem=''" name="newToDoItem" [(ngModel)]="newToDoItem">
         </mat-form-field>
 
-        <button mat-flat-button *ngIf="!editValue" id="submitItem" type="submit" [disabled]="newToDoItem===''">Add</button>
-        <button mat-flat-button *ngIf="editValue" id="submitItem" type="submit" [disabled]="newToDoItem===''">Update</button>
+        <button mat-flat-button id="submitItem" type="submit" [disabled]="newToDoItem===''">Add</button>
+      </form>
+
+      <form *ngIf="editValue" (submit)="submitEditToDoList()">
+        <mat-form-field class="NewItem">
+          <input matInput (keyup.enter)="toDoListEdit=''" name="toDoListEdit" [(ngModel)]="toDoListEdit">
+        </mat-form-field>
+
+        <button mat-flat-button id="submitItem" type="submit" (disabled)="toDoListEdit===''">Update</button>
       </form>
     </div>
     </mat-expansion-panel>

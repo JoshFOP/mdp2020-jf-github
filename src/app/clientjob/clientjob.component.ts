@@ -85,12 +85,13 @@ export class ClientjobComponent implements OnInit {
   jobs: any;
   clients: any;
   //To Do List
-  savedToDo: any;
   newToDoItem: string;
   toDoItems: any;
   savedToDoItems: any;
   editValue: boolean = false;
   toDoListEdit: any;
+  editIndex: any;
+  editedToDoListItem: any;
 
   addTodo(event, id) {
       if(this.jobs[this.id].ToDoList == null) {
@@ -151,15 +152,16 @@ export class ClientjobComponent implements OnInit {
     }
   
     editToDoList(index) {
-      this.editValue = true;
       let savedToDoList = this.jobs[this.id].ToDoList;
       this.toDoListEdit = savedToDoList[index];
-      
+      this.editValue = true;
+      this.editIndex = index;
     }
 
     submitEditToDoList(){
-      this.toDoListEdit
-      let savedToDoList 
+      let savedToDoList = this.jobs[this.id].ToDoList;
+      savedToDoList.splice(this.editIndex, 1);
+      let editedToDoItem = savedToDoList.concat(this.toDoListEdit)
       this.jobsForm.setValue({        
         clientJob: this.jobs[this.id].clientJob,
         JobTitle: this.jobs[this.id].JobTitle,
@@ -167,10 +169,11 @@ export class ClientjobComponent implements OnInit {
         startDate: this.jobs[this.id].startDate,
         finishDate: this.jobs[this.id].finishDate,
         JobStatus: this.jobs[this.id].JobStatus,
-        ToDoList: savedToDoList ,
+        ToDoList: editedToDoItem,
         JobLog: this.jobs[this.id].JobLog,
         ExpensesLog: this.jobs[this.id].ExpensesLog,
         });
+        this.editValue = false;
         this.SubmitToDoList();
     }
 
