@@ -63,7 +63,7 @@
       <!-- Mat-List END -->
       <mat-divider></mat-divider>
 
-      <form *ngIf="!editValue" (submit)="addTodo()">
+      <form *ngIf="!editToDoValue" (submit)="addTodo()">
         <mat-form-field class="NewItem">
           <input matInput placeholder="New Item" (keyup.enter)="newToDoItem=''" name="newToDoItem" [(ngModel)]="newToDoItem">
         </mat-form-field>
@@ -71,7 +71,7 @@
         <button mat-flat-button id="submitItem" type="submit" [disabled]="newToDoItem===''">Add</button>
       </form>
 
-      <form *ngIf="editValue" (submit)="submitEditToDoList()">
+      <form *ngIf="editToDoValue" (submit)="submitEditToDoList()">
         <mat-form-field class="NewItem">
           <input matInput (keyup.enter)="toDoListEdit=''" name="toDoListEdit" [(ngModel)]="toDoListEdit">
         </mat-form-field>
@@ -97,10 +97,10 @@
     <div class="JobLogDiv">
 
       <!-- Mat-List: This is where the Job Log will go -->
-      <mat-list *ngFor="let index of DateLog; let i=index"  class="JobLog">
+      <mat-list *ngFor="let jobLog of jobs[id].JobLog; let i=index;"  class="JobLog">
       
         <span class="JobLogWrapper">
-          <strong>{{DateLog[i]}}</strong> | {{HoursLog[i] + " " + "Hours"}} | {{JobLog[i]}} 
+          <strong>{{jobLog.jobLogDate | date :'dd/MM/yyyy'}}</strong> | {{jobLog.jobLogHours + " " + "Hours"}} | {{jobLog.jobLogItem}} 
         </span>
           
         <span class="editItem">
@@ -116,24 +116,24 @@
 
       <mat-divider></mat-divider>
 
-      <form>
+      <form (submit)="addJobLog()">
         <span class="JobLogDH">
           <mat-form-field class="JobLogInputDate">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="jobLogDate" (keyup.enter)="jobLogDate=''" name="jobLogDate">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="JobLogInput">
-            <input matInput type="number" placeholder="Hours">
+            <input matInput type="number" placeholder="Hours" [(ngModel)]="jobLogHours" (keyup.enter)="jobLogHours=''" name="jobLogHours">
           </mat-form-field>
         </span>
 
         <mat-form-field class="NewItem">
-          <input matInput placeholder="New Item">
+          <input matInput placeholder="New Item" [(ngModel)]="jobLogItem" (keyup.enter)="jobLogItem=''" name="jobLogItem">
         </mat-form-field>
 
-        <button mat-flat-button id="submitItem">Add</button>
+        <button mat-flat-button id="submitItem" type="submit" (disabled)="jobLogObj===''">Add</button>
       </form>
     </div>
 

@@ -13,26 +13,6 @@ import { Router } from '@angular/router';
 })
 export class ClientjobComponent implements OnInit {
 // Job Log START
-  DateLog: string[] = [
-    '20/11/19',
-    '27/11/19',
-    '03/12/19'
-  ];
-
-  JobLog: string[] = [
-    'Install Tiles', 
-    'Install Bench', 
-    'Remove Cabinet', 
-  
-    ];
-
-  HoursLog: string[] = [
-    '3', 
-    '2', 
-    '4', 
-  
-    ];
-// Job Log END
 
 // Expenses START
   displayedColumns: string[] = ['ItemQty', 'ItemExp', 'ItemPrice', 'TotalCost', 'Edit'];
@@ -73,6 +53,10 @@ export class ClientjobComponent implements OnInit {
     private router: Router) { 
       this.newToDoItem = '';
       this.toDoItems = [];
+      this.jobLogItems = [];
+      this.jobLogDate = ''
+      this.jobLogHours = ''
+      this.jobLogItem = '';
     }
 
   // Make my 'peopleForm' a FormGroup
@@ -88,11 +72,13 @@ export class ClientjobComponent implements OnInit {
   newToDoItem: string;
   toDoItems: any;
   savedToDoItems: any;
-  editValue: boolean = false;
+  editToDoValue: boolean = false;
   toDoListEdit: any;
-  editIndex: any;
+  toDoIndex: any;
   //To Do List end
 
+
+  //ToDoList Start
   addTodo(event, id) {
       if(this.jobs[this.id].ToDoList == null) {
         this.toDoItems.push(this.newToDoItem);
@@ -112,7 +98,7 @@ export class ClientjobComponent implements OnInit {
           ExpensesLog: this.jobs[this.id].ExpensesLog,
           });
         console.log(this.savedToDoItems);
-        this.SubmitToDoList();
+        this.SubmitJobsData();
       }
       else {
         let tdlJobsArray = this.jobs[this.id].ToDoList;
@@ -130,7 +116,7 @@ export class ClientjobComponent implements OnInit {
           JobLog: this.jobs[this.id].JobLog,
           ExpensesLog: this.jobs[this.id].ExpensesLog,
         });
-        this.SubmitToDoList();
+        this.SubmitJobsData();
       }
     }
 
@@ -148,19 +134,19 @@ export class ClientjobComponent implements OnInit {
         JobLog: this.jobs[this.id].JobLog,
         ExpensesLog: this.jobs[this.id].ExpensesLog,
         });
-        this.SubmitToDoList();
+        this.SubmitJobsData();
     }
   
     editToDoList(index) {
       let savedToDoList = this.jobs[this.id].ToDoList;
       this.toDoListEdit = savedToDoList[index];
-      this.editValue = true;
-      this.editIndex = index;
+      this.editToDoValue = true;
+      this.toDoIndex = index;
     }
 
     submitEditToDoList(){
       let savedToDoList = this.jobs[this.id].ToDoList;
-      savedToDoList.splice(this.editIndex, 1);
+      savedToDoList.splice(this.toDoIndex, 1);
       let editedToDoItem = savedToDoList.concat(this.toDoListEdit)
       this.jobsForm.setValue({        
         clientJob: this.jobs[this.id].clientJob,
@@ -173,9 +159,114 @@ export class ClientjobComponent implements OnInit {
         JobLog: this.jobs[this.id].JobLog,
         ExpensesLog: this.jobs[this.id].ExpensesLog,
         });
-        this.editValue = false;
-        this.SubmitToDoList();
+        this.editToDoValue = false;
+        this.SubmitJobsData();
     }
+
+    //ToDoList End
+
+  //Job Log Start
+  jobLogItems: any;
+  jobLogObj: any;
+  jobLogDate: any;
+  jobLogHours: any;
+  jobLogItem: string;
+  savedJobLogItems: any;
+  editJobLogValue: boolean = false;
+  jobLogEdit: any;
+  jobLogIndex: any;
+  //Job Log End
+
+    //JobLog Start
+    addJobLog(event, id) {
+      this.jobLogObj = {
+        jobLogDate: this.jobLogDate,
+        jobLogHours: this.jobLogHours,
+        jobLogItem: this.jobLogItem,
+      };
+      if(this.jobs[this.id].JobLog == null) {
+        this.jobLogItems.push(this.jobLogObj);
+        console.log(this.jobs[this.id].JobLog);
+        this.jobLogObj = '';
+        this.savedJobLogItems = this.jobLogItems;
+        this.jobLogItems = '';
+        this.jobsForm.setValue({        
+          clientJob: this.jobs[this.id].clientJob,
+          JobTitle: this.jobs[this.id].JobTitle,
+          quote: this.jobs[this.id].quote,
+          startDate: this.jobs[this.id].startDate,
+          finishDate: this.jobs[this.id].finishDate,
+          JobStatus: this.jobs[this.id].JobStatus,
+          ToDoList: this.jobs[this.id].ToDoList,
+          JobLog: this.savedJobLogItems,
+          ExpensesLog: this.jobs[this.id].ExpensesLog,
+          });
+        console.log(this.savedJobLogItems);
+        this.SubmitJobsData();
+      }
+      else {
+        let jobLogArray = this.jobs[this.id].JobLog;
+        this.savedJobLogItems = jobLogArray.concat(this.jobLogObj);
+        console.log(this.jobs[this.id].JobLog);
+        this.jobLogItems = '';
+        this.jobsForm.setValue({        
+          clientJob: this.jobs[this.id].clientJob,
+          JobTitle: this.jobs[this.id].JobTitle,
+          quote: this.jobs[this.id].quote,
+          startDate: this.jobs[this.id].startDate,
+          finishDate: this.jobs[this.id].finishDate,
+          JobStatus: this.jobs[this.id].JobStatus,
+          ToDoList: this.jobs[this.id].ToDoList,
+          JobLog: this.savedJobLogItems,
+          ExpensesLog: this.jobs[this.id].ExpensesLog,
+        });
+        this.SubmitJobsData();
+      }
+    }
+
+    deleteJobLog(index) {
+      let savedJobLog = this.jobs[this.id].JobLog;
+      savedJobLog.splice(index, 1);
+      this.jobsForm.setValue({        
+        clientJob: this.jobs[this.id].clientJob,
+        JobTitle: this.jobs[this.id].JobTitle,
+        quote: this.jobs[this.id].quote,
+        startDate: this.jobs[this.id].startDate,
+        finishDate: this.jobs[this.id].finishDate,
+        JobStatus: this.jobs[this.id].JobStatus,
+        ToDoList: this.jobs[this.id].ToDoList,
+        JobLog: savedJobLog,
+        ExpensesLog: this.jobs[this.id].ExpensesLog,
+        });
+        this.SubmitJobsData();
+    }
+  
+    editJobLog(index) {
+      let savedJobLog = this.jobs[this.id].JobLog;
+      this.toDoListEdit = savedJobLog[index];
+      this.editJobLogValue = true;
+      this.jobLogIndex = index;
+    }
+
+    submitEditJobLog(){
+      let savedJobLog = this.jobs[this.id].JobLog;
+      savedJobLog.splice(this.toDoIndex, 1);
+      let editedJobLog = savedJobLog.concat(this.jobLogEdit)
+      this.jobsForm.setValue({        
+        clientJob: this.jobs[this.id].clientJob,
+        JobTitle: this.jobs[this.id].JobTitle,
+        quote: this.jobs[this.id].quote,
+        startDate: this.jobs[this.id].startDate,
+        finishDate: this.jobs[this.id].finishDate,
+        JobStatus: this.jobs[this.id].JobStatus,
+        ToDoList: this.jobs[this.id].ToDoList,
+        JobLog: editedJobLog,
+        ExpensesLog: this.jobs[this.id].ExpensesLog,
+        });
+        this.editJobLogValue = false;
+        this.SubmitJobsData();
+    }
+    //JobLog End
 
   ngOnInit() {
     // Call the PeopleService Method 'getPeopleArray'
@@ -191,7 +282,7 @@ export class ClientjobComponent implements OnInit {
       this.initialiseForm(this.jobs, this.id); // Creates a form 
     } // end ngOnInit
     
-    SubmitToDoList() {
+    SubmitJobsData() {
     // Grap the edited values from the Form
     const jobsform = this.jobsForm.value;
     // Call the PeopleService Method 'editPerson'
