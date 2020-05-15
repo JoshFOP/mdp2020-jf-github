@@ -243,17 +243,12 @@ export class ClientjobComponent implements OnInit {
   
     editJobLog(index) {
       let savedJobLog = this.jobs[this.id].JobLog;
-      this.toDoListEdit = savedJobLog[index];
+      this.jobLogEdit = savedJobLog[index];
       this.editJobLogValue = true;
       this.jobLogIndex = index;
     }
 
     submitEditJobLog(){
-      this.jobLogEdit = {
-        jobLogDate: this.jobLogDate,
-        jobLogHours: this.jobLogHours,
-        jobLogItem: this.jobLogItem,
-      };
       let savedJobLog = this.jobs[this.id].JobLog;
       savedJobLog.splice(this.jobLogIndex, 1);
       let editedJobLog = savedJobLog.concat(this.jobLogEdit);

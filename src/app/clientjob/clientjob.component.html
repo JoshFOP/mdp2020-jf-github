@@ -135,18 +135,18 @@
       <form *ngIf="editJobLogValue" (submit)="submitEditJobLog()">
         <span class="JobLogDH">
           <mat-form-field class="JobLogInputDate">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="jobLogDate" (keyup.enter)="jobLogDate=''" name="jobLogDate">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="jobLogEdit.jobLogDate" (keyup.enter)="jobLogDate=''" name="jobLogDate">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="JobLogInput">
-            <input matInput type="number" placeholder="Hours" [(ngModel)]="jobLogHours" (keyup.enter)="jobLogHours=''" name="jobLogHours">
+            <input matInput type="number" placeholder="Hours" [(ngModel)]="jobLogEdit.jobLogHours" (keyup.enter)="jobLogHours=''" name="jobLogHours">
           </mat-form-field>
         </span>
 
         <mat-form-field class="NewItem">
-          <input matInput placeholder="New Item" [(ngModel)]="jobLogItem" (keyup.enter)="jobLogItem=''" name="jobLogItem">
+          <input matInput placeholder="New Item" [(ngModel)]="jobLogEdit.jobLogItem" (keyup.enter)="jobLogItem=''" name="jobLogItem">
         </mat-form-field>
 
         <button mat-flat-button id="submitItem" type="submit" (disabled)="jobLogEdit===''">Update</button>
