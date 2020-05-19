@@ -53,10 +53,16 @@ export class ClientjobComponent implements OnInit {
     private router: Router) { 
       this.newToDoItem = '';
       this.toDoItems = [];
+
       this.jobLogItems = [];
-      this.jobLogDate = ''
-      this.jobLogHours = ''
+      this.jobLogDate = '';
+      this.jobLogHours = '';
       this.jobLogItem = '';
+
+      this.expenseItems = [];
+      this.expenseQty = ''; 
+      this.expensePrice = ''; 
+      this.expenseItem = '';
     }
 
   // Make my 'peopleForm' a FormGroup
@@ -271,6 +277,111 @@ export class ClientjobComponent implements OnInit {
     return this.jobs[this.id].JobLog.map(jL => jL.jobLogHours).reduce((totalHr, value) => totalHr + value, 0);
   }
     //JobLog End
+
+      //Expenses Start
+  expenseItems: any;
+  expenseObj: any;
+  expenseQty: any;
+  expensePrice: any;
+  expenseItem: string;
+  savedExpensesItems: any;
+  editExpensesValue: boolean = false;
+  expenseEdit: any;
+  expensesIndex: any;
+  //Expenses End
+
+    //Expenses Start
+    addExpense(event, id) {
+      this.expenseObj = {
+        expenseQty: this.expenseQty,
+        expensePrice: this.expensePrice,
+        expenseItem: this.expenseItem,
+      };
+      if(this.jobs[this.id].ExpensesLog == null) {
+        this.expenseItems.push(this.expenseObj);
+        console.log(this.jobs[this.id].ExpensesLog);
+        this.expenseObj = '';
+        this.savedExpensesItems = this.expenseItems;
+        this.expenseItems = '';
+        this.jobsForm.setValue({        
+          clientJob: this.jobs[this.id].clientJob,
+          JobTitle: this.jobs[this.id].JobTitle,
+          quote: this.jobs[this.id].quote,
+          startDate: this.jobs[this.id].startDate,
+          finishDate: this.jobs[this.id].finishDate,
+          JobStatus: this.jobs[this.id].JobStatus,
+          ToDoList: this.jobs[this.id].ToDoList,
+          JobLog: this.jobs[this.id].JobLog,
+          ExpensesLog: this.savedExpensesItems,
+          });
+        console.log(this.savedExpensesItems);
+        this.SubmitJobsData();
+      }
+      else {
+        let expensesArray = this.jobs[this.id].ExpensesLog;
+        this.savedExpensesItems = expensesArray.concat(this.expenseObj);
+        console.log(this.jobs[this.id].ExpensesLog);
+        this.expenseItems = '';
+        this.jobsForm.setValue({        
+          clientJob: this.jobs[this.id].clientJob,
+          JobTitle: this.jobs[this.id].JobTitle,
+          quote: this.jobs[this.id].quote,
+          startDate: this.jobs[this.id].startDate,
+          finishDate: this.jobs[this.id].finishDate,
+          JobStatus: this.jobs[this.id].JobStatus,
+          ToDoList: this.jobs[this.id].ToDoList,
+          JobLog: this.jobs[this.id].JobLog,
+          ExpensesLog: this.savedExpensesItems,
+        });
+        this.SubmitJobsData();
+      }
+    }
+
+    deleteExpense(index) {
+      let savedExpenses = this.jobs[this.id].ExpensesLog;
+      savedExpenses.splice(index, 1);
+      this.jobsForm.setValue({        
+        clientJob: this.jobs[this.id].clientJob,
+        JobTitle: this.jobs[this.id].JobTitle,
+        quote: this.jobs[this.id].quote,
+        startDate: this.jobs[this.id].startDate,
+        finishDate: this.jobs[this.id].finishDate,
+        JobStatus: this.jobs[this.id].JobStatus,
+        ToDoList: this.jobs[this.id].ToDoList,
+        JobLog: this.jobs[this.id].JobLog,
+        ExpensesLog: savedExpenses,
+        });
+        this.SubmitJobsData();
+    }
+  
+    editExpense(index) {
+      let savedExpenses = this.jobs[this.id].ExpensesLog;
+      this.expenseEdit = savedExpenses[index];
+      this.editExpensesValue = true;
+      this.expensesIndex = index;
+    }
+
+    submitEditExpense(){
+      let savedExpenses = this.jobs[this.id].ExpensesLog;
+      savedExpenses.splice(this.expensesIndex, 1);
+      let editedExpenses = savedExpenses.concat(this.expenseEdit);
+      this.jobsForm.setValue({        
+        clientJob: this.jobs[this.id].clientJob,
+        JobTitle: this.jobs[this.id].JobTitle,
+        quote: this.jobs[this.id].quote,
+        startDate: this.jobs[this.id].startDate,
+        finishDate: this.jobs[this.id].finishDate,
+        JobStatus: this.jobs[this.id].JobStatus,
+        ToDoList: this.jobs[this.id].ToDoList,
+        JobLog: this.jobs[this.id].JobLog,
+        ExpensesLog: editedExpenses,
+        });
+        this.editExpensesValue = false;
+        this.SubmitJobsData();
+    }
+
+
+
 
   ngOnInit() {
     // Call the PeopleService Method 'getPeopleArray'
