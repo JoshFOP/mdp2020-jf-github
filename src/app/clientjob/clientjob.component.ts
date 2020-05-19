@@ -266,6 +266,10 @@ export class ClientjobComponent implements OnInit {
         this.editJobLogValue = false;
         this.SubmitJobsData();
     }
+
+    getTotalHours() {
+    return this.jobs[this.id].JobLog.map(jL => jL.jobLogHours).reduce((totalHr, value) => totalHr + value, 0);
+  }
     //JobLog End
 
   ngOnInit() {
