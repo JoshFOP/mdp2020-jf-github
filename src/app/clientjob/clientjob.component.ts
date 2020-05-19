@@ -16,7 +16,7 @@ export class ClientjobComponent implements OnInit {
 
 // Expenses START
   displayedColumns: string[] = ['ItemQty', 'ItemExp', 'ItemPrice', 'TotalCost', 'Edit'];
-  dataSource = EXPENSES_DATA;
+  expensesTable = EXPENSES_DATA;
 // Expenses END
 
   CloseJob() {
@@ -425,21 +425,21 @@ export class ClientjobComponent implements OnInit {
 
 
 export interface ExpensesTable {
-  ItemQty: number;
-  ItemExp: string;
-  ItemPrice: number;
+  ItemQty: any;
+  ItemExp: any;
+  ItemPrice: any;
   
   
 }
 
-
 const EXPENSES_DATA: ExpensesTable[] = [
   
-  {ItemQty: 1, ItemExp: 'Wooden Planks', ItemPrice: 5, },
-  {ItemQty: 2, ItemExp: 'Pack of Nails', ItemPrice: 2, },
-  {ItemQty: 1, ItemExp: 'Paint', ItemPrice: 15, },
+  {ItemQty: 1, ItemExp: 'Wooden Planks', ItemPrice: 5, }
+
   
 ];
+
+
 
 
 

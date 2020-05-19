@@ -171,37 +171,37 @@
 
     <div class="ExpensesLogDiv">
 
-    <table mat-table [dataSource]="dataSource" class="ExpensesTable">
+    <table mat-table [dataSource]="expensesTable" class="ExpensesTable">
 
   <!-- Qty Column -->
-      <ng-container matColumnDef="ItemQty">
+      <ng-container matColumnDef="ItemQty" >
         <th mat-header-cell *matHeaderCellDef> Qty </th>
-        <td mat-cell *matCellDef="let element"> {{element.ItemQty}} </td>
+        <td mat-cell *matCellDef="let exp"> {{exp.ItemQty}} </td>
       </ng-container>
 
   <!-- Item Column -->
       <ng-container matColumnDef="ItemExp">
         <th mat-header-cell *matHeaderCellDef class="tdCell"> Item </th>
-        <td mat-cell *matCellDef="let element" class="tdCell"> {{element.ItemExp}} </td>
+        <td mat-cell *matCellDef="let exp" class="tdCell"> {{exp.ItemExp}} </td>
       </ng-container>
 
   <!-- Price Column -->
       <ng-container matColumnDef="ItemPrice">
         <th mat-header-cell *matHeaderCellDef class="tdCell"> Price </th>
-        <td mat-cell *matCellDef="let element" class="tdCell"> ${{element.ItemPrice}} </td>
+        <td mat-cell *matCellDef="let exp" class="tdCell"> ${{exp.ItemPrice}} </td>
       </ng-container>
 
   <!-- Total Column -->
       <ng-container matColumnDef="TotalCost">
         <th mat-header-cell *matHeaderCellDef class="tdCell"> Total </th>
-        <td mat-cell *matCellDef="let element" class="tdCell"> ${{element.ItemQty * element.ItemPrice}} 
+        <td mat-cell *matCellDef="let exp" class="tdCell"> ${{exp.ItemQty * exp.ItemPrice}} 
 
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Edit">
         <th mat-header-cell *matHeaderCellDef class="EditCell"> Edit </th>
-        <td mat-cell *matCellDef="let element" class="EditCell">  
+        <td mat-cell *matCellDef="let exp" class="EditCell">  
 
         <span class="editItemExp">
           <mat-icon>edit</mat-icon>
@@ -219,22 +219,22 @@
 
       <mat-divider></mat-divider>
 
-      <form>
+      <form *ngIf="!editExpensesValue" (submit)="addExpense()">
         <span class="ExpensesSpan">
           <mat-form-field class="QtyInput">
-            <input matInput type="number" placeholder="Qty">
+            <input matInput type="number" placeholder="Qty" [(ngModel)]="expenseQty" (keyup.enter)="expenseQty=''" name="expenseQty">
           </mat-form-field>
 
           <mat-form-field class="ItemCost">
-            <input matInput type="number" placeholder="Price">
+            <input matInput type="number" placeholder="Price" [(ngModel)]="expensePrice" (keyup.enter)="expensePrice=''" name="expensePrice">
           </mat-form-field>
         </span>
 
         <mat-form-field class="ItemExpenses">
-          <input matInput placeholder="New item">
+          <input matInput placeholder="New item" [(ngModel)]="expenseItem" (keyup.enter)="expenseItem=''" name="expenseItem">
         </mat-form-field>
 
-        <button mat-flat-button id="submitItem">Add</button>
+        <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Add</button>
       </form>
     </div>
 
