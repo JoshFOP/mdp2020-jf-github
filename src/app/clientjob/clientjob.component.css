@@ -149,12 +149,6 @@ mat-expansion-panel {
   width: 100%;
 }
 
-/* Expenses Table Cell */
-.tdCell {
-  text-align: center;
-  padding: 5px;
-}
-
 /* Expenses Edit Cell*/
 .EditCell {
   padding: 5px;
@@ -165,9 +159,12 @@ mat-expansion-panel {
 /* Expenses Table */
 th, td {
   border-right-style: solid;
+  border-top-style: solid;
   border-right-width: 0.5px;
+  border-top-width: 0.5px;
   border-color: lightgrey;
   text-align: center;
+  padding: 5px;
 }
 
 /* Edit and Delete Icon for Expenses Table */
