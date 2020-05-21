@@ -169,7 +169,7 @@ th, td {
 
 /* Edit and Delete Icon for Expenses Table */
 .editItemExp {
-  float: right;
+  margin: auto;
 }
 
 /* Expenses Table Span to hold icons */

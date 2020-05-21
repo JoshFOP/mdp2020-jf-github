@@ -274,7 +274,9 @@ export class ClientjobComponent implements OnInit {
     }
 
     getTotalHours() {
-    return this.jobs[this.id].JobLog.map(jL => jL.jobLogHours).reduce((totalHr, value) => totalHr + value, 0);
+      if(this.jobs[this.id].JobLog !== null) {
+      return this.jobs[this.id].JobLog.map(jL => jL.jobLogHours).reduce((totalHr, value) => totalHr + value, 0);
+    }
   }
     //JobLog End
 
@@ -380,6 +382,12 @@ export class ClientjobComponent implements OnInit {
         this.SubmitJobsData();
     }
 
+  //Not working
+    getTotalExpense() {
+      if(this.jobs[this.id].ExpensesLog !== null) {
+      return this.jobs[this.id].ExpensesLog.map(eL => eL.expensePrice).reduce((totalExp, value) => totalExp + value, 0);
+      }
+    }
 
 
 

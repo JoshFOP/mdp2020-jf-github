@@ -183,7 +183,7 @@
     <td>{{expense.expensePrice}}</td>
     <td>{{expense.expensePrice * expense.expenseQty}}</td>
     <td class="EditCell">
-      <span class="editItem">
+      <span class="editItemExp">
         <mat-icon (click)="editExpense(i)">edit</mat-icon>
         <mat-icon (click)="deleteExpense(i)">delete</mat-icon>
       </span>
@@ -192,7 +192,7 @@
   </tr>
 </table>
 
-      <h1>Total Expenses: $24</h1>
+      <h1>Total Expenses: 0</h1>
 
       <mat-divider></mat-divider>
 
@@ -212,6 +212,24 @@
         </mat-form-field>
 
         <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Add</button>
+      </form>
+
+      <form *ngIf="editExpensesValue" (submit)="submitEditExpense()">
+        <span class="ExpensesSpan">
+          <mat-form-field class="QtyInput">
+            <input matInput type="number" placeholder="Qty" [(ngModel)]="expenseEdit.expenseQty" (keyup.enter)="expenseQty=''" name="expenseQty">
+          </mat-form-field>
+
+          <mat-form-field class="ItemCost">
+            <input matInput type="number" placeholder="Price" [(ngModel)]="expenseEdit.expensePrice" (keyup.enter)="expensePrice=''" name="expensePrice">
+          </mat-form-field>
+        </span>
+
+        <mat-form-field class="ItemExpenses">
+          <input matInput placeholder="New item" [(ngModel)]="expenseEdit.expenseItem" (keyup.enter)="expenseItem=''" name="expenseItem">
+        </mat-form-field>
+
+        <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Update</button>
       </form>
     </div>
 
