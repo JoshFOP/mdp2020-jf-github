@@ -60,6 +60,7 @@ import { ClientInfoComponent } from './client-info/client-info.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { ClientsService } from './services/clients.service';
 import { JobsService } from './services/jobs.service';
+import { NextjobService } from './services/nextjob.service';
 
 
 
@@ -126,7 +127,7 @@ const appRoutes: Routes = [
     ],  // end imports
    declarations: [AppComponent, HomeComponent, AddjobComponent, ClientjobComponent, EditjobComponent, EditnextjobComponent, ClosedjobsComponent, ClientlistComponent, AddClientComponent, ClientInfoComponent, EditClientComponent],
     bootstrap: [AppComponent],
-    providers: [ClientsService, JobsService],
+    providers: [ClientsService, JobsService, NextjobService],
     entryComponents: []
 })
 export class AppModule {
