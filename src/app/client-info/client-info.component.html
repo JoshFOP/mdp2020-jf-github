@@ -19,11 +19,21 @@
       </div>
     </div>
 
-    <div class='ClientJobDiv'>
-      <button mat-button class='ClientJob' routerLink="/clientjob">
-        Kitchen Reconstruction
-      </button>
-    </div>
+  <h1 id="headerTitle">Active Jobs</h1>
+
+  <div class='ClientJobDiv' *ngFor="let item of jobs; let i=index">
+    <button mat-button *ngIf="jobs[i].clientJob == clients[id].id && jobs[i].JobStatus == true" class='ClientJob' [routerLink]="['/clientjob', i]">
+    {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
+    </button>
+  </div>
+
+  <h1 id="headerTitle">Closed Jobs</h1>
+
+  <div class='ClientJobDiv' *ngFor="let item of jobs; let i=index">
+    <button mat-button *ngIf="jobs[i].clientJob == clients[id].id && jobs[i].JobStatus == false" class='ClosedClientJobs' [routerLink]="['/clientjob', i]">
+    {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
+    </button>
+  </div>
 
 
     <div class='CreateJobButtonDiv'>
