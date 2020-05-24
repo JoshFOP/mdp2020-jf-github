@@ -3,20 +3,21 @@
 <form [formGroup]="jobsForm" (ngSubmit)="submit()">
   <div id='AddJobDiv'>
     <div class='AddJob'>
-      <span class="AddJobSpan">
-        <mat-form-field class="AddJobInput">
-          <mat-label>Client</mat-label>
-            <mat-select formControlName="clientJob">
-              <mat-option *ngFor="let client of clients; let i=index" [value]="client.id" >
-                {{client.name}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div id="breaker"></div>
-        <mat-form-field class="JobTitle">
-          <input matInput placeholder="Job Title" formControlName="JobTitle">
-        </mat-form-field>
-      </span>
+      <div class="errorMessage">{{errorMessage}}</div>
+        <span class="AddJobSpan">
+          <mat-form-field class="AddJobInput">
+            <mat-label>Client</mat-label>
+              <mat-select formControlName="clientJob">
+                <mat-option *ngFor="let client of clients; let i=index" [value]="client.id" >
+                  {{client.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <div id="breaker"></div>
+          <mat-form-field class="JobTitle">
+            <input matInput placeholder="Job Title" formControlName="JobTitle">
+          </mat-form-field>
+        </span>
 
       <mat-form-field class="QuoteInput">
        <span matPrefix>$ &nbsp;</span> <input matInput type="number" placeholder="Quote" formControlName="quote">

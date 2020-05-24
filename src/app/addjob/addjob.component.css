@@ -66,3 +66,7 @@ section {
   margin: auto;
   text-align: center;
 }
+
+.errorMessage {
+  color: red;
+}

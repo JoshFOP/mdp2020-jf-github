@@ -29,6 +29,8 @@ export class AddjobComponent implements OnInit {
   clients: any;
   jobs: any;
   jobsForm: FormGroup;
+  errorMessage: any;
+  valid: any;
 
   ngOnInit(): void {
     // Call PeopleService Method "getPeople" and assign all data to 'people'
@@ -51,13 +53,39 @@ export class AddjobComponent implements OnInit {
     );
   }
 
-  submit(): void {   
-    this.js.addJob(this.jobsForm.value);
-    alert("Data added to database" ) ;
-    this.jobsForm.reset();
-    this.router.navigate(['/home'])
+  submit(): void {  
+    this.errorMessage = "";
+    this.valid = this.js.checkAdd(this.jobsForm.value);
+    if (this.valid == "pass") {
+      this.js.addJob(this.jobsForm.value);
+      alert("Data added to database" ) ;
+      this.jobsForm.reset();
+      this.router.navigate(['/home']);
+
     }
+    if (this.valid == "clientJobFail") {
+      this.errorMessage = "* You must select a client";
+    }
+
+    else if (this.valid == "JobTitleFail") {
+      this.errorMessage = "* You must enter a job title";
+    }
+
+    else if (this.valid == "quoteFail") {
+      this.errorMessage = "* You must enter a quote amount";
+    }
+
+    else if (this.valid == "startDateFail") {
+      this.errorMessage = "* You must enter a start date";
+    }
+
+     else if (this.valid == "finishDateFail") {
+      this.errorMessage = "* You must enter a finish date";
+    }
+
   }
+}
+
 
 
 

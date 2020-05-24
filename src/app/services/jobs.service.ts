@@ -51,7 +51,32 @@ jobs=[];
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
+  checkAdd(addValues): void {
+    //check if inputs in the add are valid
+    this.valid = "pass";
+    if (typeof addValues.clientJob === 'undefined' || addValues.clientJob == null || addValues.clientJob == "") {
+      this.valid = "clientJobFail";
+    }
+
+    else if (typeof addValues.JobTitle === 'undefined' || addValues.JobTitle == null || addValues.JobTitle == "") {
+      this.valid = "JobTitleFail";
+    }
+
+    else if (typeof addValues.quote === 'undefined' || addValues.quote == null || addValues.quote == "") {
+      this.valid = "quoteFail";
+    }
+
+    else if (typeof addValues.startDate === 'undefined' || addValues.startDate == null || addValues.startDate == "") {
+      this.valid = "startDateFail";
+    }
+
+    else if (typeof addValues.finishDate === 'undefined' || addValues.finishDate == null || addValues.finishDate == "") {
+      this.valid = "finishDateFail";
+    }
+
+    return this.valid;
+
+    }
+}  // end class
     
 
-    
-}  // end class
