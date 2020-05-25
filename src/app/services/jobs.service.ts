@@ -30,8 +30,12 @@ jobs=[];
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
-
-  //Removed the edit function
+  editJob(Job, id): void {
+    let jobs = JSON.parse(localStorage.getItem('jobs'));
+    jobs[id] = Job;
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+    
+  }
 
   closeJob(id): void {
     let jobs = this.getJob()
@@ -44,7 +48,7 @@ jobs=[];
     jobs[id].JobStatus = true;
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
-
+//probs dont need this
   addToDoList(Job, id): void {
     let jobs = JSON.parse(localStorage.getItem('jobs'));
     jobs[id] = Job;

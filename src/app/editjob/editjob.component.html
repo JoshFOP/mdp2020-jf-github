@@ -1,47 +1,45 @@
 <section>
-  <h1 id='headerTitle'>Edit Job</h1>
+<h1 id='headerTitle'>Edit Job</h1>
+<form [formGroup]="jobsForm" (ngSubmit)="submitEdit()">
+  <div id='AddJobDiv'>
+    <div class='AddJob'>
+      <div class="errorMessage">{{errorMessage}}</div>
+        <span class="AddJobSpan">
+          <mat-form-field class="AddJobInput">
+            <mat-label>Client</mat-label>
+              <mat-select formControlName="clientJob">
+                <mat-option *ngFor="let client of clients; let i=index" [value]="client.id" >
+                  {{client.name}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <div id="breaker"></div>
+          <mat-form-field class="JobTitle">
+            <input matInput placeholder="Job Title" formControlName="JobTitle">
+          </mat-form-field>
+        </span>
 
-  <form class="AddJobForm">
-
-    <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Name" value="John Appleseed">
-    </mat-form-field>
-
-    <mat-form-field class="FormInputWidth">
-      <span matPrefix>+04 &nbsp;</span>
-      <input type="tel" matInput placeholder="Phone Number" value="0412345678">
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Email" dividerColor="warn" value="johnappleseed@gmail.com">
-      
-    </mat-form-field>
-
-    <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address" value="123 First Street">
-    </mat-form-field>
-    <mat-form-field class="FormInputWidth">
-      <input matInput placeholder="Address 2">
-    </mat-form-field>
-
-    <span class='AddressSpan'>
-      <mat-form-field class="FormInputWidth">
-        <input matInput placeholder="City" value="North Sydney">
+      <mat-form-field class="QuoteInput">
+       <span matPrefix>$ &nbsp;</span> <input matInput type="number" placeholder="Quote" formControlName="quote">
       </mat-form-field>
-    </span>
-    <span class='AddressSpan'>
-      <mat-form-field class="FormInputWidth">
-        <input matInput placeholder="State" value="NSW">
+   <span class="DateSpan">
+      <mat-form-field class="StartDate">
+          <input matInput [matDatepicker]="Startpicker" placeholder="Start Date" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="Startpicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #Startpicker></mat-datepicker>
       </mat-form-field>
-    </span>
-    <span class='AddressSpan'>
-      <mat-form-field class="FormInputWidth">
-        <input matInput #postalCode maxlength="4" placeholder="Postal Code" value="2060">
-      </mat-form-field>
-    </span>
 
-  <button mat-flat-button id="submitJob" routerLink="/clientjob">Update</button>
+      <mat-form-field class="FinishDate">
+          <input matInput [matDatepicker]="Finishpicker" placeholder="Finish Date" formControlName="finishDate">
+          <mat-datepicker-toggle matSuffix [for]="Finishpicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #Finishpicker></mat-datepicker>
+      </mat-form-field>
+   </span>
+      <br>
+      <button mat-flat-button id="submitItem">Update</button>
+      <br>
+    </div>
+  </div>
 </form>
 
 </section>

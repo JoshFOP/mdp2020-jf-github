@@ -32,7 +32,7 @@
       </mat-list>
       <br>
       <div class="ButtonDiv">
-        <button mat-flat-button id="EditItem" routerLink="/editjob">Edit</button>
+        <button mat-flat-button id="EditItem" [routerLink]="['/editjob', id]">Edit</button>
         <button mat-flat-button *ngIf="jobs[id].JobStatus == true" id="CloseItem" (click)="CloseJob()">Close Job</button>
         <button mat-flat-button *ngIf="jobs[id].JobStatus == false" id="ReopenItem" (click)="ReopenJob()">Reopen Job</button>
       </div>

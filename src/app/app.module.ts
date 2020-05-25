@@ -70,7 +70,7 @@ const appRoutes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'addjob', component: AddjobComponent},
     {path: 'clientjob/:id', component: ClientjobComponent},
-    {path: 'editjob', component: EditjobComponent},
+    {path: 'editjob/:id', component: EditjobComponent},
     {path: 'editnextjob', component: EditnextjobComponent},
     {path: 'closedjobs', component: ClosedjobsComponent},
     {path: 'clientlist', component: ClientlistComponent},
