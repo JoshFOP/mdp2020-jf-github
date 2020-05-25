@@ -27,7 +27,7 @@ export class EditnextjobComponent implements OnInit {
   clients: any;
   jobs: any;
   nextJob: any;
-  editNextJobForm: FormGroup;
+  nextJobForm: FormGroup;
 
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class EditnextjobComponent implements OnInit {
     this.jobs = this.js.getJob();
     this.nextJob = this.njs.getNextJob();
 
-      this.editNextJobForm = this.fb.group(
+      this.nextJobForm = this.fb.group(
       {
         jobIndex: [null],
         jobDate: [null],
@@ -45,9 +45,9 @@ export class EditnextjobComponent implements OnInit {
   }
 
   submit(): void {   
-    this.njs.addNextJob(this.editNextJobForm.value);
-    alert("Data added to database" ) ;
-    this.editNextJobForm.reset();
+    this.njs.addNextJob(this.nextJobForm.value);
+    alert("Data added to database" );
+    this.nextJobForm.reset();
     this.router.navigate(['/home'])
     }
   } 
