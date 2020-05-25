@@ -213,6 +213,11 @@ export class ClientjobComponent implements OnInit {
       else {
         let jobLogArray = this.jobs[this.id].JobLog;
         this.savedJobLogItems = jobLogArray.concat(this.jobLogObj);
+        this.savedJobLogItems.sort(function(a, b) {
+          var c = new Date(a.jobLogDate);
+          var d = new Date(b.jobLogDate);
+          return c-d;
+        });
         console.log(this.jobs[this.id].JobLog);
         this.jobLogItems = '';
         this.jobsForm.setValue({        
@@ -290,6 +295,7 @@ export class ClientjobComponent implements OnInit {
   editExpensesValue: boolean = false;
   expenseEdit: any;
   expensesIndex: any;
+  totalItemCost: any;
   //Expenses End
 
     //Expenses Start
@@ -382,13 +388,13 @@ export class ClientjobComponent implements OnInit {
         this.SubmitJobsData();
     }
 
-  //Not working
+  /*Not working
     getTotalExpense() {
-      if(this.jobs[this.id].ExpensesLog !== null) {
-      return this.jobs[this.id].ExpensesLog.map(eL => eL.expensePrice).reduce((totalExp, value) => totalExp + value, 0);
-      }
+      this.totalItemCost = document.getElementById("totalItemCost").innerHTML;
+      console.log(this.totalItemCost);
+      return this.totalItemCost;
     }
-
+  */
 
 
   ngOnInit() {
@@ -411,7 +417,7 @@ export class ClientjobComponent implements OnInit {
     // Call the PeopleService Method 'editPerson'
     // Pass it two paramters 1.Edited form values  and 2. Current ID of the person
     // clicked on in the List
-    this.js.addToDoList(jobsform, this.id);
+    this.js.editJob(jobsform, this.id);
     this.jobs = this.js.getJob();
   }
     initialiseForm(jobs, id): void {

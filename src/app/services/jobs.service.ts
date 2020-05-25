@@ -48,12 +48,7 @@ jobs=[];
     jobs[id].JobStatus = true;
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
-//probs dont need this
-  addToDoList(Job, id): void {
-    let jobs = JSON.parse(localStorage.getItem('jobs'));
-    jobs[id] = Job;
-    localStorage.setItem('jobs', JSON.stringify(jobs));
-  }
+
 
   checkAdd(addValues): void {
     //check if inputs in the add are valid

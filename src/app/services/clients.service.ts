@@ -30,6 +30,7 @@ clients=[];
     Client.id = id;
     let clients = JSON.parse(localStorage.getItem('clients'));
     clients.push(Client);
+    clients.sort((a, b) => a.name.localeCompare(b.name));
     localStorage.setItem('clients', JSON.stringify(clients));
   }
 

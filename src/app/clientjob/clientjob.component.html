@@ -181,7 +181,7 @@
     <td>{{expense.expenseQty}}</td>
     <td>{{expense.expenseItem}}</td>
     <td>{{expense.expensePrice}}</td>
-    <td>{{expense.expensePrice * expense.expenseQty}}</td>
+    <td id="totalItemCost">{{expense.expensePrice * expense.expenseQty}}</td>
     <td class="EditCell">
       <span class="editItemExp">
         <mat-icon (click)="editExpense(i)">edit</mat-icon>
@@ -192,7 +192,7 @@
   </tr>
 </table>
 
-      <h1>Total Expenses: 0</h1>
+      <h1>Total Expenses: {{getTotalExpense()}}</h1>
 
       <mat-divider></mat-divider>
 
