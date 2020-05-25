@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class NextjobService {
-  nextJob = '';
+  nextJob = ;
   constructor() {
       /* ====LOCALSTORAGE========
     Local storage stores data as key-value pairs, and the values are stored as "strings". 
@@ -21,9 +21,8 @@ export class NextjobService {
 
   // this FUNCTION accepts 'one' parameter 'person'
   // and pushes this parameter into the peole array
-  addNextJob(NextJob): void {
-    let nextJob = JSON.parse(localStorage.getItem('nextJob'));
-    localStorage.setItem('nextJob', JSON.stringify(nextJob));
+  addNextJob(): void {
+    localStorage.setItem('nextJob', JSON.stringify(this.nextJob));
   }
 }
   

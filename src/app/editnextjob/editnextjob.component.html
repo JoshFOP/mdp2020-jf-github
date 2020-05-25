@@ -2,25 +2,27 @@
 <h1 id='headerTitle'>Next Job</h1>
   <div id='NextJobDiv'>
     <div class='NextJob'>
+      <form [formGroup]="editNextJobForm" (ngSubmit)="submit()">
       <span class="NextJobSpan">
         <mat-form-field class="NextJobInput">
           <mat-label>Job</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let Job of jobs" [value]="Job.value">
-                {{Job.viewValue}}
+            <mat-select formControlName="jobIndex">
+              <mat-option *ngFor="let item of jobs; let i=index" [value]="[i]" >
+                  {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
               </mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field class="NextJobDate">
-          <input matInput [matDatepicker]="picker" placeholder="Date">
+          <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="jobDate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
       </span>
       <br>
-      <button mat-flat-button id="submitItem" routerLink="/home">Update</button>
+      <button mat-flat-button id="submitItem">Update</button>
       <br>
+    </form>
     </div>
   </div>
 
