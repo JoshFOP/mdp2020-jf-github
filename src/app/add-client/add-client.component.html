@@ -1,27 +1,26 @@
 <section>
   <h1 id='headerTitle'>Add Client</h1>
 
-
   <form class="AddClientForm" [formGroup]="clientsForm" (ngSubmit)="submit()">
   <div class="errormessage">{{errorMessage}}</div>
-
+    <!-- START Input for adding a client -->
     <mat-form-field class="FormInputWidth">
       <input matInput placeholder="Name" formControlName="name">
     </mat-form-field>
-   <!-- Allows user to enter "e" for some reason -->
+   
     <mat-form-field class="FormInputWidth">
       <input type="tel" matInput placeholder="Phone Number"  maxlength="10" formControlName="Pnum">
       <mat-icon matSuffix>phone</mat-icon>
     </mat-form-field>
-
+    
     <mat-form-field class="FormInputWidth">
       <input matInput placeholder="Email (optional)" dividerColor="warn" formControlName="Email">
-      
     </mat-form-field>
-
+    
     <mat-form-field class="FormInputWidth">
       <input matInput placeholder="Address" formControlName="Add1">
     </mat-form-field>
+
     <mat-form-field class="FormInputWidth">
       <input matInput placeholder="Address 2 (optional)" formControlName="Add2">
     </mat-form-field>
@@ -31,18 +30,20 @@
         <input matInput placeholder="City" formControlName="city">
       </mat-form-field>
     </span>
+
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
         <input matInput placeholder="State" formControlName="state">
       </mat-form-field>
     </span>
+
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
         <input matInput #postalCode maxlength="4" placeholder="Postal Code" formControlName="Pcode">
       </mat-form-field>
     </span>
 
-  <button mat-flat-button id="submitClient">Add</button>
-</form>
-
+    <button mat-flat-button id="submitClient">Add</button>
+  </form>
+  <!-- END Input for adding a client -->
 </section>

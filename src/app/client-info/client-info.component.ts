@@ -17,44 +17,28 @@ constructor(
     private cs: ClientsService,
     private js: JobsService) { }
 
-  // Make my 'peopleForm' a FormGroup
   clientsForm: FormGroup;
-
-  //router
   id: number;
   private sub: any;
-  //people array
   clients: any;
   jobs: any;
 
   ngOnInit() {
-    // Call the PeopleService Method 'getPeopleArray'
-    // returns all the people data
+    // Gets the client and job databases from clients.service.ts and jobs.service.ts
     this.clients = this.cs.getClient();
     this.jobs = this.js.getJob()
 
-    // This code graps the "id" from the URL
+    // Fetches the id of the client
     this.sub = this.route.params.subscribe(params => {
-      this.id = + params['id']; // (+) converts string 'id' to a number
+      this.id = + params['id'];
     });
-
-    } // end ngOnInit
-
-
-    openClientPage(id: number): void {
-     
-        // IMPORTANT: this 'id' will be passed to the Dialog box as variable named "data"  
-        data: id    
-   
-    }  //end dialogConfig
-    
-    deleteClient(id) {
-      if (confirm("Are you sure you want to delete this client?")) {
-        console.log("in delete :" + id)
-        this.cs.deleteClient(this.id);
-      }
-      
+  }
+  // Opens dialogue box to confirm the deletion of the client.  
+  deleteClient(id) {
+    if (confirm("Are you sure you want to delete? " + this.clients[this.id].name)) {
+      this.cs.deleteClient(this.id);
     }
+  }
 }
 
 

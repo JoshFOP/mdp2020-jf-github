@@ -25,7 +25,7 @@ export class AddjobComponent implements OnInit {
     private router: Router)
    { }
 
-  // People Variable to hold all people
+  // Variables
   clients: any;
   jobs: any;
   jobsForm: FormGroup;
@@ -33,10 +33,10 @@ export class AddjobComponent implements OnInit {
   valid: any;
 
   ngOnInit(): void {
-    // Call PeopleService Method "getPeople" and assign all data to 'people'
+    // Calls upon the client and job database from clients.service.ts and jobs.service.ts
     this.clients = this.cs.getClient() 
     this.jobs = this.js.getJob() 
-
+    // Initiates the job form
     this.jobsForm = this.fb.group(
       {
         clientJob: [null],
@@ -52,7 +52,8 @@ export class AddjobComponent implements OnInit {
       }
     );
   }
-
+  // START Job input validation. Perameters for what is considered valid are called from jobs.service.ts and compared to input results. 
+    // Invalid inputs will display an error on the users screen
   submit(): void {  
     this.errorMessage = "";
     this.valid = this.js.checkAdd(this.jobsForm.value);
@@ -85,6 +86,7 @@ export class AddjobComponent implements OnInit {
 
   }
 }
+// END Job input validation
 
 
 

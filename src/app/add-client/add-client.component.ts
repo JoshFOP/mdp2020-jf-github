@@ -14,7 +14,7 @@ export class AddClientComponent implements OnInit {
   valid: any;
   errorMessage: any;
 
-  // Create instances of FormBuilder (fb) and PeopleServices (ps)
+  // Create instances of FormBuilder (fb) and ClientsService (cs)
   constructor(
     private fb: FormBuilder,
     private cs: ClientsService,
@@ -24,11 +24,7 @@ export class AddClientComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // INITIALFORM FUNCTION  (bottom of page)
-    // This will create our HTML form "peopleForm" as a FormGroup
-    // and define our forms Controls. Later we can access validation functions
-    // from the FormBuilder helper class. eg validate an email...
-    // this validation can be real time
+    // Initilises clientsForm as a database.
     this.clientsForm = this.fb.group(
       {
         name: [null],
@@ -39,27 +35,14 @@ export class AddClientComponent implements OnInit {
         city: [null],
         state: [null],
         Pcode: [null]
-        
       }
     );
-
-    // ------------VALIDATION USING 'OBSERVABLE -------------------//
-    // Here our poeopleForm formgroup has an Observable method called 'valueChanges'
-    // this will map to any of our form fields in real time.  So we can validate the data 
-    // entered into the form field by the user in real time and give then feedback 
-    this.clientsForm.valueChanges 
-      .subscribe((formData) => {
-          // formData represents all of the form field elements
-          // Look in the console and look at specific fields as you enter data
-          console.log(formData.name);
-      })  // END OF "OSERVABLE "VALIDATIONS
-
   }   // end ngOnInit
 
-  // ------------------ VALIDATION WHEN SUBMITTING FORM---------------------------------------//
+  // START Validation of client details. 
   submit(): void {  
     this.errorMessage = "";
-    this.valid = this.cs.checkAdd(this.clientsForm.value);
+    this.valid = this.cs.checkAdd(this.clientsForm.value); // Gets the perameters for what is considered to be valid from the clients.service.ts
     if (this.valid == "pass") {
       this.cs.addClient(this.clientsForm.value);
       alert("Data added to database" ) ;
@@ -96,3 +79,4 @@ export class AddClientComponent implements OnInit {
     }    
   }
 }
+// END Validation of client details.

@@ -1,45 +1,46 @@
 <section>
-  <!-- Client Info START -->
-    <h1 id="headerTitle">{{jobs[id].JobTitle}}</h1>
-    <div class="ClientInfo">
-      <mat-list class="ClientInfoList" >
+  <!-- START Client/ Job Info. Gets client information and job information using id's that correspond to the client and the job. -->
+  <h1 id="headerTitle">{{jobs[id].JobTitle}}</h1>
+  <div class="ClientInfo">
+    <mat-list class="ClientInfoList" >
         
-        <mat-list-item class="InfoHeading">Name: </mat-list-item>
-          <mat-list-item class="ClientData"> {{cs.getClientById(jobs[id].clientJob).name}} </mat-list-item>
-        <mat-list-item class="InfoHeading">Phone Number: </mat-list-item>
-          <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Pnum}} </mat-list-item>
+      <mat-list-item class="InfoHeading">Name: </mat-list-item>
+        <mat-list-item class="ClientData"> {{cs.getClientById(jobs[id].clientJob).name}} </mat-list-item>
+      <mat-list-item class="InfoHeading">Phone Number: </mat-list-item>
+        <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Pnum}} </mat-list-item>
 
-        <mat-list-item class="InfoHeading">Email: </mat-list-item>
-          <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Email}} </mat-list-item>
+      <mat-list-item class="InfoHeading">Email: </mat-list-item>
+        <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Email}} </mat-list-item>
 
-        <mat-list-item class="InfoHeading">Address: </mat-list-item>
-          <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Add1}} {{cs.getClientById(jobs[id].clientJob).Add2}} {{cs.getClientById(jobs[id].clientJob).city}}, {{cs.getClientById(jobs[id].clientJob).state}}, {{cs.getClientById(jobs[id].clientJob).Pcode}} </mat-list-item>
+      <mat-list-item class="InfoHeading">Address: </mat-list-item>
+        <mat-list-item class="ClientData">{{cs.getClientById(jobs[id].clientJob).Add1}} {{cs.getClientById(jobs[id].clientJob).Add2}} {{cs.getClientById(jobs[id].clientJob).city}}, {{cs.getClientById(jobs[id].clientJob).state}}, {{cs.getClientById(jobs[id].clientJob).Pcode}} </mat-list-item>
 
-        <mat-list-item class="InfoHeading">Quote: </mat-list-item>
-          <mat-list-item class="ClientData">${{jobs[id].quote}}</mat-list-item>
-
-        <mat-list-item class="InfoHeading">Job Status: </mat-list-item>
-          <mat-list-item *ngIf="jobs[id].JobStatus == true" class="JobStatusOpen">Open</mat-list-item>
-          <mat-list-item *ngIf="jobs[id].JobStatus == false" class="JobStatusClosed">Closed</mat-list-item>
+      <mat-list-item class="InfoHeading">Quote: </mat-list-item>
+        <mat-list-item class="ClientData">${{jobs[id].quote}}</mat-list-item>
+      
+      <!-- Will display closed or open depending on the data passed from the job database -->
+      <mat-list-item class="InfoHeading">Job Status: </mat-list-item>
+        <mat-list-item *ngIf="jobs[id].JobStatus == true" class="JobStatusOpen">Open</mat-list-item>
+        <mat-list-item *ngIf="jobs[id].JobStatus == false" class="JobStatusClosed">Closed</mat-list-item>
         
-         <mat-list-item class="InfoHeading">Date Started: </mat-list-item>
-          <mat-list-item class="ClientData">{{jobs[id].startDate | date :'dd/MM/yyyy'}}</mat-list-item>
+      <mat-list-item class="InfoHeading">Date Started: </mat-list-item>
+        <mat-list-item class="ClientData">{{jobs[id].startDate | date :'dd/MM/yyyy'}}</mat-list-item>
 
-        <mat-list-item class="InfoHeading">Date Due: </mat-list-item>
-         <mat-list-item class="ClientData">{{jobs[id].finishDate | date :'dd/MM/yyyy'}}</mat-list-item>
+      <mat-list-item class="InfoHeading">Date Due: </mat-list-item>
+        <mat-list-item class="ClientData">{{jobs[id].finishDate | date :'dd/MM/yyyy'}}</mat-list-item>
 
-        
       </mat-list>
       <br>
-      <div class="ButtonDiv">
-        <button mat-flat-button id="EditItem" [routerLink]="['/editjob', id]">Edit</button>
-        <button mat-flat-button *ngIf="jobs[id].JobStatus == true" id="CloseItem" (click)="CloseJob()">Close Job</button>
-        <button mat-flat-button *ngIf="jobs[id].JobStatus == false" id="ReopenItem" (click)="ReopenJob()">Reopen Job</button>
-      </div>
+      <!-- Will display closed or reopen depending on the data passed from the job database -->
+    <div class="ButtonDiv">
+      <button mat-flat-button id="EditItem" [routerLink]="['/editjob', id]">Edit</button>
+      <button mat-flat-button *ngIf="jobs[id].JobStatus == true" id="CloseItem" (click)="CloseJob()">Close Job</button>
+      <button mat-flat-button *ngIf="jobs[id].JobStatus == false" id="ReopenItem" (click)="ReopenJob()">Reopen Job</button>
     </div>
-  <!-- Client Info END -->
+  </div>
+  <!-- END Client/ Job Info -->
 
-  <!-- To Do List START -->
+  <!-- START To Do List -->
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -47,58 +48,55 @@
          <div class="PanelTitle">To Do List</div>
         </mat-panel-title>
       </mat-expansion-panel-header>
-    <div class="ToDoListDiv">
 
-      <!-- Mat-List: This is where the to do list will go -->
-      <!-- SUGGESTION: Each job could have an hour counter. E.g: Fix deck - individual hours -->
-      <mat-list *ngFor="let toDo of jobs[id].ToDoList; let i=index;" class="ToDoListClass">
-        <mat-list-item *ngIf="toDo.toDoStatus == false" class="ToDoListItem">
-          {{toDo.toDoItem}}
-        <span class="editItem">
-          <mat-icon *ngIf="toDo.toDoStatus == false" (click)="checkedToDo(i)"><strong>check</strong></mat-icon>
-          <mat-icon *ngIf="toDo.toDoStatus == false" (click)="editToDoList(i)">edit</mat-icon>
-          <mat-icon *ngIf="toDo.toDoStatus == false" (click)="deleteToDoList(i)">delete</mat-icon>
-        </span> 
-        </mat-list-item>
+      <div class="ToDoListDiv">
+        <!-- Displays each to do list item under a particular job. They are sorted by the to do list status which determines whether an item is complete or not -->
+        <mat-list *ngFor="let toDo of jobs[id].ToDoList; let i=index;" class="ToDoListClass">
+          <mat-list-item *ngIf="toDo.toDoStatus == false" class="ToDoListItem">
+            {{toDo.toDoItem}}
+          <span class="editItem">
+            <mat-icon *ngIf="toDo.toDoStatus == false" (click)="checkedToDo(i)"><strong>check</strong></mat-icon>
+            <mat-icon *ngIf="toDo.toDoStatus == false" (click)="editToDoList(i)">edit</mat-icon>
+            <mat-icon *ngIf="toDo.toDoStatus == false" (click)="deleteToDoList(i)">delete</mat-icon>
+          </span> 
+          </mat-list-item>
 
-        <mat-list-item *ngIf="toDo.toDoStatus == true" class="ToDoListItemComplete">
-          {{toDo.toDoItem}}
-        <span class="editItem">
-          <mat-icon *ngIf="toDo.toDoStatus == true" (click)="uncheckedToDo(i)"><strong>close</strong></mat-icon>
-          <mat-icon *ngIf="toDo.toDoStatus == true" (click)="editToDoList(i)">edit</mat-icon>
-          <mat-icon *ngIf="toDo.toDoStatus == true" (click)="deleteToDoList(i)">delete</mat-icon>
-        </span>
-        </mat-list-item>
+          <mat-list-item *ngIf="toDo.toDoStatus == true" class="ToDoListItemComplete">
+            {{toDo.toDoItem}}
+          <span class="editItem">
+            <mat-icon *ngIf="toDo.toDoStatus == true" (click)="uncheckedToDo(i)"><strong>close</strong></mat-icon>
+            <mat-icon *ngIf="toDo.toDoStatus == true" (click)="editToDoList(i)">edit</mat-icon>
+            <mat-icon *ngIf="toDo.toDoStatus == true" (click)="deleteToDoList(i)">delete</mat-icon>
+          </span>
+          </mat-list-item>
+        </mat-list>
 
-      </mat-list>
+        <mat-divider></mat-divider>
+        <!-- START To Do List Inputs -->
+        <form *ngIf="!editToDoValue" (submit)="addTodo()">
+          <mat-form-field class="NewItem">
+            <input matInput placeholder="New Item" (keyup.enter)="toDoItem=''" name="toDoItem" [(ngModel)]="toDoItem">
+          </mat-form-field>
 
+          <button mat-flat-button id="submitItem" type="submit" [disabled]="toDoItem===''">Add</button>
+        </form>
 
-      <!-- Mat-List END -->
-      <mat-divider></mat-divider>
+        <form *ngIf="editToDoValue" (submit)="submitEditToDoList()">
+          <mat-form-field class="NewItem">
+            <input matInput (keyup.enter)="toDoListEdit=''" name="toDoListEdit" [(ngModel)]="toDoListEdit.toDoItem">
+          </mat-form-field>
 
-      <form *ngIf="!editToDoValue" (submit)="addTodo()">
-        <mat-form-field class="NewItem">
-          <input matInput placeholder="New Item" (keyup.enter)="toDoItem=''" name="toDoItem" [(ngModel)]="toDoItem">
-        </mat-form-field>
-
-        <button mat-flat-button id="submitItem" type="submit" [disabled]="toDoItem===''">Add</button>
-      </form>
-
-      <form *ngIf="editToDoValue" (submit)="submitEditToDoList()">
-        <mat-form-field class="NewItem">
-          <input matInput (keyup.enter)="toDoListEdit=''" name="toDoListEdit" [(ngModel)]="toDoListEdit.toDoItem">
-        </mat-form-field>
-
-        <button mat-flat-button id="submitItem" type="submit" (disabled)="toDoListEdit===''">Update</button>
-      </form>
-    </div>
+          <button mat-flat-button id="submitItem" type="submit" (disabled)="toDoListEdit===''">Update</button>
+        </form>
+        <!-- END To Do List Inputs -->
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
-  <!-- To Do List END -->
+  <!-- END To Do List -->
 
   <br>
 
-  <!-- Job Log START -->
+  <!-- START Job Log -->
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -169,7 +167,7 @@
 
     </mat-expansion-panel>
   </mat-accordion>
-  <!-- Job Log END -->
+  <!-- END Job Log -->
 
   <br>
 
