@@ -53,6 +53,7 @@ export class ClientjobComponent implements OnInit {
     private router: Router) { 
       this.newToDoItem = '';
       this.toDoItems = [];
+      this.toDoItem = '';
 
       this.jobLogItems = [];
       this.jobLogDate = '';
@@ -81,15 +82,23 @@ export class ClientjobComponent implements OnInit {
   editToDoValue: boolean = false;
   toDoListEdit: any;
   toDoIndex: any;
+  toDoListObj: any;
+
+  toDoItem: any;
+  toDoStatus: boolean = false;
   //To Do List end
 
 
   //ToDoList Start
   addTodo(event, id) {
+    this.toDoListObj = {
+        toDoItem: this.toDoItem,
+        toDoStatus: this.toDoStatus,
+      };
       if(this.jobs[this.id].ToDoList == null) {
-        this.toDoItems.push(this.newToDoItem);
+        this.toDoItems.push(this.toDoListObj);
         console.log(this.jobs[this.id].ToDoList);
-        this.newToDoItem = '';
+        this.toDoListObj = '';
         this.savedToDoItems = this.toDoItems;
         this.toDoItems = '';
         this.jobsForm.setValue({        
@@ -108,9 +117,9 @@ export class ClientjobComponent implements OnInit {
       }
       else {
         let tdlJobsArray = this.jobs[this.id].ToDoList;
-        this.savedToDoItems = tdlJobsArray.concat(this.newToDoItem);
+        this.savedToDoItems = tdlJobsArray.concat(this.toDoListObj);
         console.log(this.jobs[this.id].ToDoList);
-        this.newToDoItem = '';
+        this.toDoListObj = '';
         this.jobsForm.setValue({        
           clientJob: this.jobs[this.id].clientJob,
           JobTitle: this.jobs[this.id].JobTitle,
@@ -153,7 +162,7 @@ export class ClientjobComponent implements OnInit {
     submitEditToDoList(){
       let savedToDoList = this.jobs[this.id].ToDoList;
       savedToDoList.splice(this.toDoIndex, 1);
-      let editedToDoItem = savedToDoList.concat(this.toDoListEdit)
+      let editedToDoItem = savedToDoList.concat(this.toDoListEdit);
       this.jobsForm.setValue({        
         clientJob: this.jobs[this.id].clientJob,
         JobTitle: this.jobs[this.id].JobTitle,
@@ -167,6 +176,16 @@ export class ClientjobComponent implements OnInit {
         });
         this.editToDoValue = false;
         this.SubmitJobsData();
+    }
+
+    checkedToDo(index) {
+      this.js.markCompleteToDo(this.id, index);
+      this.jobs = this.js.getJob();
+    }
+
+    uncheckedToDo(index) {
+      this.js.markIncompleteToDo(this.id, index);
+      this.jobs = this.js.getJob();
     }
 
     //ToDoList End
@@ -282,6 +301,7 @@ export class ClientjobComponent implements OnInit {
         this.editJobLogValue = false;
         this.SubmitJobsData();
     }
+
 
     getTotalHours() {
       if(this.jobs[this.id].JobLog !== null) {

@@ -52,28 +52,41 @@
       <!-- Mat-List: This is where the to do list will go -->
       <!-- SUGGESTION: Each job could have an hour counter. E.g: Fix deck - individual hours -->
       <mat-list *ngFor="let toDo of jobs[id].ToDoList; let i=index;" class="ToDoListClass">
-        <mat-list-item class="ToDoListItem">{{toDo}}
+        <mat-list-item *ngIf="toDo.toDoStatus == false" class="ToDoListItem">
+          {{toDo.toDoItem}}
         <span class="editItem">
-          <mat-icon><strong>check</strong></mat-icon>
-          <mat-icon (click)="editToDoList(i)">edit</mat-icon>
-          <mat-icon (click)="deleteToDoList(i)">delete</mat-icon>
+          <mat-icon *ngIf="toDo.toDoStatus == false" (click)="checkedToDo(i)"><strong>check</strong></mat-icon>
+          <mat-icon *ngIf="toDo.toDoStatus == false" (click)="editToDoList(i)">edit</mat-icon>
+          <mat-icon *ngIf="toDo.toDoStatus == false" (click)="deleteToDoList(i)">delete</mat-icon>
+        </span> 
+        </mat-list-item>
+
+        <mat-list-item *ngIf="toDo.toDoStatus == true" class="ToDoListItemComplete">
+          {{toDo.toDoItem}}
+        <span class="editItem">
+          <mat-icon *ngIf="toDo.toDoStatus == true" (click)="uncheckedToDo(i)"><strong>close</strong></mat-icon>
+          <mat-icon *ngIf="toDo.toDoStatus == true" (click)="editToDoList(i)">edit</mat-icon>
+          <mat-icon *ngIf="toDo.toDoStatus == true" (click)="deleteToDoList(i)">delete</mat-icon>
         </span>
         </mat-list-item>
+
       </mat-list>
+
+
       <!-- Mat-List END -->
       <mat-divider></mat-divider>
 
       <form *ngIf="!editToDoValue" (submit)="addTodo()">
         <mat-form-field class="NewItem">
-          <input matInput placeholder="New Item" (keyup.enter)="newToDoItem=''" name="newToDoItem" [(ngModel)]="newToDoItem">
+          <input matInput placeholder="New Item" (keyup.enter)="toDoItem=''" name="toDoItem" [(ngModel)]="toDoItem">
         </mat-form-field>
 
-        <button mat-flat-button id="submitItem" type="submit" [disabled]="newToDoItem===''">Add</button>
+        <button mat-flat-button id="submitItem" type="submit" [disabled]="toDoItem===''">Add</button>
       </form>
 
       <form *ngIf="editToDoValue" (submit)="submitEditToDoList()">
         <mat-form-field class="NewItem">
-          <input matInput (keyup.enter)="toDoListEdit=''" name="toDoListEdit" [(ngModel)]="toDoListEdit">
+          <input matInput (keyup.enter)="toDoListEdit=''" name="toDoListEdit" [(ngModel)]="toDoListEdit.toDoItem">
         </mat-form-field>
 
         <button mat-flat-button id="submitItem" type="submit" (disabled)="toDoListEdit===''">Update</button>

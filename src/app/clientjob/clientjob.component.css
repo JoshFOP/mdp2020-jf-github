@@ -46,6 +46,7 @@ section {
 
 mat-expansion-panel {
   border-radius: 25px !important;
+
 }
 
 /* To Do List wrapper*/
@@ -55,13 +56,28 @@ mat-expansion-panel {
 }
 
 /* Mat-List Items */
-.ToDoListClass {
+.ToDoListItem {
   border-radius: 25px;
   border-style: solid;
   border-width: 0.5px;
   border-color: lightgrey;
-  padding: 10px;
+  margin: auto;
   margin-bottom: 10px;
+  padding: 10px;
+  width: 95%;
+}
+
+.ToDoListItemComplete {
+  background-image: linear-gradient(324deg, rgba(0,255,97,1) 0%, rgba(21,222,152,1) 53%, rgba(0,255,110,1) 100%);
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: lightgrey;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 95%;
+  text-decoration: line-through;
 }
 
 /* Edit and Delete icons for to do list */

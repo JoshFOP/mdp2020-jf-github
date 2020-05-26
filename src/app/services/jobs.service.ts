@@ -49,6 +49,18 @@ jobs=[];
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
+  markCompleteToDo(id, index): void {
+    let jobs = this.getJob()
+    jobs[id].ToDoList[index].toDoStatus = true;
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }
+
+  markIncompleteToDo(id, index): void {
+    let jobs = this.getJob()
+    jobs[id].ToDoList[index].toDoStatus = false;
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }
+
 
   checkAdd(addValues): void {
     //check if inputs in the add are valid
