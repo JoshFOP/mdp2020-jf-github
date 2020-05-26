@@ -388,13 +388,21 @@ export class ClientjobComponent implements OnInit {
         this.SubmitJobsData();
     }
 
-  /*Not working
+  
     getTotalExpense() {
-      this.totalItemCost = document.getElementById("totalItemCost").innerHTML;
-      console.log(this.totalItemCost);
+      this.totalItemCost = 0;
+      let jobs = this.jobs[this.id].ExpensesLog;
+      if(jobs !== null) {
+      var i;
+      var totalPrice = 0;
+      for(i = 0; i < jobs.length; i++) {
+        totalPrice = jobs[i].expenseQty * jobs[i].expensePrice;
+        this.totalItemCost += totalPrice;
+      }
       return this.totalItemCost;
+      }
     }
-  */
+  
 
 
   ngOnInit() {
