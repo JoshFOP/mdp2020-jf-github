@@ -109,7 +109,7 @@
 
       
       <!-- Mat-List END -->
-       <strong>Total Hours: </strong> {{getTotalHours()}}
+      <div *ngIf="jobs[id].JobLog !== null"><strong>Total Hours: </strong> {{getTotalHours()}}</div>
 
       <mat-divider></mat-divider>
 
@@ -191,8 +191,8 @@
 
   </tr>
 </table>
-
-      <h1>Total Expenses: {{getTotalExpense()}}</h1>
+      <br>
+      <div *ngIf="jobs[id].ExpensesLog !== null"><strong>Total Expenses: </strong> ${{getTotalExpense()}}</div>
 
       <mat-divider></mat-divider>
 

@@ -263,6 +263,11 @@ export class ClientjobComponent implements OnInit {
       let savedJobLog = this.jobs[this.id].JobLog;
       savedJobLog.splice(this.jobLogIndex, 1);
       let editedJobLog = savedJobLog.concat(this.jobLogEdit);
+      editedJobLog.sort(function(a, b) {
+          var c = new Date(a.jobLogDate);
+          var d = new Date(b.jobLogDate);
+          return c-d;
+        });
       this.jobsForm.setValue({        
         clientJob: this.jobs[this.id].clientJob,
         JobTitle: this.jobs[this.id].JobTitle,
