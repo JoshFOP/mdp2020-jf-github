@@ -3,6 +3,8 @@ import { ClientsService } from '../services/clients.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { JobsService } from '../services/jobs.service';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-info',
@@ -15,7 +17,8 @@ constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private cs: ClientsService,
-    private js: JobsService) { }
+    private js: JobsService,
+    private router: Router) { }
 
   clientsForm: FormGroup;
   id: number;
@@ -37,6 +40,7 @@ constructor(
   deleteClient(id) {
     if (confirm("Are you sure you want to delete? " + this.clients[this.id].name)) {
       this.cs.deleteClient(this.id);
+      this.router.navigate(['/clientlist']);
     }
   }
 }
