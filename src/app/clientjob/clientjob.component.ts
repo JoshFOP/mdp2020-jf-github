@@ -12,12 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./clientjob.component.css']
 })
 export class ClientjobComponent implements OnInit {
-// Job Log START
 
-// Expenses START
+// Expenses table 
   displayedColumns: string[] = ['ItemQty', 'ItemExp', 'ItemPrice', 'TotalCost', 'Edit'];
-  
-// Expenses END
 
   CloseJob() {
     var closejobcon = confirm("Are you sure you want to close this job?");

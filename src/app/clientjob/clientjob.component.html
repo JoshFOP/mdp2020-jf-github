@@ -171,7 +171,7 @@
 
   <br>
 
-<!-- Expenses START -->
+<!-- START Expenses -->
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -182,71 +182,69 @@
 
     <div class="ExpensesLogDiv">
 
-<table class="ExpensesTable">
-  <th>Qty</th>
-  <th>Item</th>
-  <th>Cost</th>
-  <th>Total</th>
-  <th>Edit</th>
-  <tr *ngFor="let expense of jobs[id].ExpensesLog ; let i=index;" >
-    <td>{{expense.expenseQty}}</td>
-    <td>{{expense.expenseItem}}</td>
-    <td>{{expense.expensePrice}}</td>
-    <td id="totalItemCost">{{expense.expensePrice * expense.expenseQty}}</td>
-    <td class="EditCell">
-      <span class="editItemExp">
-        <mat-icon (click)="editExpense(i)">edit</mat-icon>
-        <mat-icon (click)="deleteExpense(i)">delete</mat-icon>
-      </span>
-    </td>
+      <table class="ExpensesTable">
+        <th>Qty</th>
+        <th>Item</th>
+        <th>Cost</th>
+        <th>Total</th>
+        <th>Edit</th>
+        <tr *ngFor="let expense of jobs[id].ExpensesLog ; let i=index;" >
+          <td>{{expense.expenseQty}}</td>
+          <td>{{expense.expenseItem}}</td>
+          <td>{{expense.expensePrice}}</td>
+          <td id="totalItemCost">{{expense.expensePrice * expense.expenseQty}}</td>
+          <td class="EditCell">
+            <span class="editItemExp">
+              <mat-icon (click)="editExpense(i)">edit</mat-icon>
+              <mat-icon (click)="deleteExpense(i)">delete</mat-icon>
+            </span>
+          </td>
+        </tr>
+      </table>
+        <br>
+          <div *ngIf="jobs[id].ExpensesLog !== null"><strong>Total Expenses: </strong> ${{getTotalExpense()}}</div>
 
-  </tr>
-</table>
-      <br>
-      <div *ngIf="jobs[id].ExpensesLog !== null"><strong>Total Expenses: </strong> ${{getTotalExpense()}}</div>
+            <mat-divider></mat-divider>
 
-      <mat-divider></mat-divider>
+            <form *ngIf="!editExpensesValue" (submit)="addExpense()">
+              <span class="ExpensesSpan">
+                <mat-form-field class="QtyInput">
+                  <input matInput type="number" placeholder="Qty" [(ngModel)]="expenseQty" (keyup.enter)="expenseQty=''" name="expenseQty">
+                </mat-form-field>
 
-      <form *ngIf="!editExpensesValue" (submit)="addExpense()">
-        <span class="ExpensesSpan">
-          <mat-form-field class="QtyInput">
-            <input matInput type="number" placeholder="Qty" [(ngModel)]="expenseQty" (keyup.enter)="expenseQty=''" name="expenseQty">
-          </mat-form-field>
+                <mat-form-field class="ItemCost">
+                  <input matInput type="number" placeholder="Price" [(ngModel)]="expensePrice" (keyup.enter)="expensePrice=''" name="expensePrice">
+                </mat-form-field>
+              </span>
 
-          <mat-form-field class="ItemCost">
-            <input matInput type="number" placeholder="Price" [(ngModel)]="expensePrice" (keyup.enter)="expensePrice=''" name="expensePrice">
-          </mat-form-field>
-        </span>
+              <mat-form-field class="ItemExpenses">
+                <input matInput placeholder="New item" [(ngModel)]="expenseItem" (keyup.enter)="expenseItem=''" name="expenseItem">
+              </mat-form-field>
 
-        <mat-form-field class="ItemExpenses">
-          <input matInput placeholder="New item" [(ngModel)]="expenseItem" (keyup.enter)="expenseItem=''" name="expenseItem">
-        </mat-form-field>
+              <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Add</button>
+            </form>
 
-        <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Add</button>
-      </form>
+            <form *ngIf="editExpensesValue" (submit)="submitEditExpense()">
+              <span class="ExpensesSpan">
+                <mat-form-field class="QtyInput">
+                  <input matInput type="number" placeholder="Qty" [(ngModel)]="expenseEdit.expenseQty" (keyup.enter)="expenseQty=''" name="expenseQty">
+                </mat-form-field>
 
-      <form *ngIf="editExpensesValue" (submit)="submitEditExpense()">
-        <span class="ExpensesSpan">
-          <mat-form-field class="QtyInput">
-            <input matInput type="number" placeholder="Qty" [(ngModel)]="expenseEdit.expenseQty" (keyup.enter)="expenseQty=''" name="expenseQty">
-          </mat-form-field>
+                <mat-form-field class="ItemCost">
+                  <input matInput type="number" placeholder="Price" [(ngModel)]="expenseEdit.expensePrice" (keyup.enter)="expensePrice=''" name="expensePrice">
+                </mat-form-field>
+              </span>
 
-          <mat-form-field class="ItemCost">
-            <input matInput type="number" placeholder="Price" [(ngModel)]="expenseEdit.expensePrice" (keyup.enter)="expensePrice=''" name="expensePrice">
-          </mat-form-field>
-        </span>
+              <mat-form-field class="ItemExpenses">
+                <input matInput placeholder="New item" [(ngModel)]="expenseEdit.expenseItem" (keyup.enter)="expenseItem=''" name="expenseItem">
+              </mat-form-field>
 
-        <mat-form-field class="ItemExpenses">
-          <input matInput placeholder="New item" [(ngModel)]="expenseEdit.expenseItem" (keyup.enter)="expenseItem=''" name="expenseItem">
-        </mat-form-field>
-
-        <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Update</button>
-      </form>
-    </div>
+              <button mat-flat-button id="submitItem" type="submit" (disabled)="expensesObj===''">Update</button>
+            </form>
+          </div>
 
     </mat-expansion-panel>
   </mat-accordion>
-  <!-- Hour Counter END -->
-  
+  <!-- END Expenses -->
 
 </section>
