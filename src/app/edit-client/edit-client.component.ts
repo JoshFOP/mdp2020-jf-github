@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClientsService } from '../services/clients.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-client',
@@ -15,47 +17,37 @@ export class EditClientComponent implements OnInit {
 constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private cs: ClientsService) { }
+    private cs: ClientsService,
+    private router: Router) { }
 
-  // Make my 'peopleForm' a FormGroup
   clientsForm: FormGroup;
-
-  //router
   id: number;
   private sub: any;
-  //people array
   clients: any
 
   ngOnInit() {
-    // Call the PeopleService Method 'getPeopleArray'
-    // returns all the people data
+    // Gets clients database
     this.clients = this.cs.getClient();
-
-    // This code graps the "id" from the URL
+    // Gets the clients id
     this.sub = this.route.params.subscribe(params => {
-      this.id = + params['id']; // (+) converts string 'id' to a number
+      this.id = + params['id'];
     });
-    // FUNCTION INITIALISE FORM - see below
-    // Pass it two paramters 1. people data array and 2. Current ID of the person
-    // clicked on in the List
     this.initialiseForm(this.clients, this.id); // Creates a form Group
-  } // end ngOnInit
+  } 
 
   message: string = "";
   editShowBut: boolean = true;
   bntStyle: string = '';
-
+  // Submits edit and reroutes to the clients page.
   submitEdit() {
-    // Grap the edited values from the Form
     const form = this.clientsForm.value;
-    // Call the PeopleService Method 'editPerson'
-    // Pass it two paramters 1.Edited form values  and 2. Current ID of the person
-    // clicked on in the List
     this.cs.editClient(form, this.id);
     this.clients = this.cs.getClient();
     alert("Client has been updated");
+    this.router.navigate(['/clientinfo', this.id]);
   }
-    initialiseForm(clients, id): void {
+  
+  initialiseForm(clients, id): void {
     this.clientsForm = this.fb.group(
       {
         name: [this.clients[id].name],
@@ -69,13 +61,5 @@ constructor(
         id: [this.clients[id].id]
       }
     );
-
-  } // end initialiseForm
-
-    openClientEditPage(id: number): void {
-     
-        // IMPORTANT: this 'id' will be passed to the Dialog box as variable named "data"  
-        data: id;    
-   
-    }  //end dialogConfig
+  } 
 }
