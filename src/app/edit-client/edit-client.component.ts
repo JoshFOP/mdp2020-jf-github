@@ -23,7 +23,7 @@ constructor(
   clientsForm: FormGroup;
   id: number;
   private sub: any;
-  clients: any
+  clients: any;
 
   ngOnInit() {
     // Gets clients database
@@ -41,14 +41,14 @@ constructor(
   // Submits edit and reroutes to the clients page.
   submitEdit(): void {  
     this.errorMessage = "";
-    this.valid = this.cs.checkAdd(this.clientsForm.value); // Gets the perameters for what is considered to be valid from the clients.service.ts
+    this.valid = this.cs.checkAdd(this.clientsForm.value); // Gets the parameters for what is considered to be valid from the clients.service.ts
     if (this.valid == "pass") {
       this.cs.editClient(this.clientsForm.value, this.id);
-      alert("Data added to database") ;
+      alert("Data added to database");
       this.clientsForm.reset();
       this.router.navigate(['/clientinfo, id']);
-
     }
+
     if (this.valid == "nameFail") {
       this.errorMessage = "* You must enter a name";
     }

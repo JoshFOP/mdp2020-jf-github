@@ -60,7 +60,7 @@ clients=[];
     localStorage.setItem('clients', JSON.stringify(clients));
   }
 
-    checkAdd(addValues): void {
+  checkAdd(addValues): void {
     //check if inputs in the add are valid
     this.valid = "pass";
     if (typeof addValues.name === 'undefined' || addValues.name == null || addValues.name == "") {
