@@ -38,8 +38,14 @@ jobs=[];
   }
 
   closeJob(id): void {
-    let jobs = this.getJob()
+    let jobs = this.getJob();
     jobs[id].JobStatus = false;
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }
+
+  deleteJob(id): void {
+    let jobs = this.getJob();
+    jobs.splice(id, 1);
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 

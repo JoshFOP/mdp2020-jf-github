@@ -36,6 +36,7 @@
       <button mat-flat-button id="EditItem" [routerLink]="['/editjob', id]">Edit</button>
       <button mat-flat-button *ngIf="jobs[id].JobStatus == true" id="CloseItem" (click)="CloseJob()">Close Job</button>
       <button mat-flat-button *ngIf="jobs[id].JobStatus == false" id="ReopenItem" (click)="ReopenJob()">Reopen Job</button>
+      <button mat-flat-button id="DeleteJob" (click)="DeleteJob()">Delete Job</button>
     </div>
   </div>
   <!-- END Client/ Job Info -->

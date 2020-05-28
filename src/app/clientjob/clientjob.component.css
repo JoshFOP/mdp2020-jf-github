@@ -213,6 +213,16 @@ th, td {
 /* Close Job */
 
 #CloseItem {
+  background-color: rgb(210, 120, 15);
+  color: white;
+  border-radius: 25px;
+  transition: 0.3s;
+  text-align: center;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#DeleteJob {
   background-color: rgb(220, 30, 30);
   color: white;
   border-radius: 25px;
@@ -232,8 +242,11 @@ th, td {
   margin-left: 5px;
 }
 
-#CloseItem:hover {
+#DeleteJob:hover {
   background-color: rgb(235, 45, 45);
+}
+#CloseItem:hover {
+  background-color: rgb(200, 110, 10);
 }
 
 #ReopenItem:hover {
@@ -249,7 +262,6 @@ th, td {
   width: 95px;
   transition: 0.3s;
   display: inline-block;
-  margin-right: 5px;
 }
 
 #EditItem:hover {
