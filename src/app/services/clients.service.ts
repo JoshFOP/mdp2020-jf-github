@@ -50,9 +50,20 @@ clients=[];
   }
 
   deleteClient(id): void {
-    let clients = this.getClient()
+    let clients = this.getClient();
     clients.splice(id, 1);
     localStorage.setItem('clients', JSON.stringify(clients));
+  }
+
+  checkCurrentClients(newName) {
+    let clients = this.getClient();
+    let name;
+    for(let i=0; i < clients.length; i++) {
+      let clientname = clients[i].name
+      if(clientname == newName.name) {
+        return clientname;
+      }
+    }
   }
 
   checkAdd(addValues): void {
@@ -61,10 +72,9 @@ clients=[];
     if (typeof addValues.name === 'undefined' || addValues.name == null || addValues.name == "") {
       this.valid = "nameFail";
     }
-  // search for pre-existing names.
-   /*else if (typeof addValues.name === 'undefined' || addValues.name == null ||                addValues.name == "") {
-      this.valid = "nameFailTaken";
-    }*/
+    else if (addValues.name == this.checkCurrentClients(addValues)) {
+      this.valid = "sameNameFail";
+    }
 
     else if (typeof addValues.Pnum === 'undefined' || addValues.Pnum == null || addValues.Pnum == "") {
       this.valid = "PnumFail";
@@ -95,4 +105,42 @@ clients=[];
     return this.valid;
 
     }
-}  // end class
+    
+  // checks edited values.
+  checkEdit(addValues): void {
+    //check if inputs in the add are valid
+    this.valid = "pass";
+    if (typeof addValues.name === 'undefined' || addValues.name == null || addValues.name == "") {
+      this.valid = "nameFail";
+    }
+
+    else if (typeof addValues.Pnum === 'undefined' || addValues.Pnum == null || addValues.Pnum == "") {
+      this.valid = "PnumFail";
+    }
+
+    else if (addValues.Pnum.toString().length != 10) {
+      this.valid = "PnumFailInvalid";
+    }
+
+    else if (typeof addValues.Add1 === 'undefined' || addValues.Add1 == null || addValues.Add1 == "") {
+      this.valid = "Add1Fail";
+    }
+
+    else if (typeof addValues.city === 'undefined' || addValues.city == null || addValues.city == "") {
+      this.valid = "CityFail";
+    }
+
+    else if (typeof addValues.state === 'undefined' || addValues.state == null || addValues.state == "") {
+      this.valid = "StateFail";
+    }
+
+    else if (typeof addValues.Pcode === 'undefined' || addValues.Pcode == null || addValues.Pcode == "") {
+      this.valid = "PcodeFail";
+    }
+    console.log("name is " + addValues.name); //debugging output
+    console.log("valid is inside check " + this.valid); //debugging output
+
+    return this.valid;
+
+    }
+}

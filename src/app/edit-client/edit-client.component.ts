@@ -41,7 +41,7 @@ constructor(
   // Submits edit and reroutes to the clients page.
   submitEdit(): void {  
     this.errorMessage = "";
-    this.valid = this.cs.checkAdd(this.clientsForm.value); // Gets the parameters for what is considered to be valid from the clients.service.ts
+    this.valid = this.cs.checkEdit(this.clientsForm.value); // Gets the parameters for what is considered to be valid from the clients.service.ts
     if (this.valid == "pass") {
       this.cs.editClient(this.clientsForm.value, this.id);
       alert("Data added to database");
@@ -52,6 +52,7 @@ constructor(
     if (this.valid == "nameFail") {
       this.errorMessage = "* You must enter a name";
     }
+
 
     else if (this.valid == "PnumFail") {
       this.errorMessage = "* You must enter a phone number";

@@ -54,6 +54,10 @@ export class AddClientComponent implements OnInit {
       this.errorMessage = "* You must enter a name";
     }
 
+    else if (this.valid == "sameNameFail") {
+      this.errorMessage = "* This client already exists";
+    }
+
     else if (this.valid == "PnumFail") {
       this.errorMessage = "* You must enter a phone number";
     }
