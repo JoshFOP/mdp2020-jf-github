@@ -119,6 +119,7 @@ export class ClientjobComponent implements OnInit {
         ExpensesLog: this.jobs[this.id].ExpensesLog,
       });
         console.log(this.savedToDoItems);
+        this.toDoItem = '';
         this.SubmitJobsData();
       }
       else {
@@ -137,6 +138,7 @@ export class ClientjobComponent implements OnInit {
           JobLog: this.jobs[this.id].JobLog,
           ExpensesLog: this.jobs[this.id].ExpensesLog,
         });
+        this.toDoItem = '';
         this.SubmitJobsData();
       }
     }
@@ -231,6 +233,9 @@ export class ClientjobComponent implements OnInit {
         ExpensesLog: this.jobs[this.id].ExpensesLog,
       });
       console.log(this.savedJobLogItems);
+      this.jobLogDate = '';
+      this.jobLogHours = '';
+      this.jobLogItem = '';
       this.SubmitJobsData();
     }
     else {
@@ -254,6 +259,9 @@ export class ClientjobComponent implements OnInit {
         JobLog: this.savedJobLogItems,
         ExpensesLog: this.jobs[this.id].ExpensesLog,
       });
+      this.jobLogDate = '';
+      this.jobLogHours = '';
+      this.jobLogItem = '';
       this.SubmitJobsData();
     }
   }
@@ -350,6 +358,9 @@ export class ClientjobComponent implements OnInit {
         ExpensesLog: this.savedExpensesItems,
       });
       console.log(this.savedExpensesItems);
+      this.expenseQty = '';
+      this.expensePrice = '';
+      this.expenseItem = '';
       this.SubmitJobsData();
     }
     else {
@@ -368,6 +379,9 @@ export class ClientjobComponent implements OnInit {
         JobLog: this.jobs[this.id].JobLog,
         ExpensesLog: this.savedExpensesItems,
       });
+      this.expenseQty = '';
+      this.expensePrice = '';
+      this.expenseItem = '';
       this.SubmitJobsData();
     }
   }

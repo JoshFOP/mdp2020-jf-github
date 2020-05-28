@@ -5,10 +5,10 @@
     <div class='TodayJob'>
       <span class='TodayJobSpan'>
         <h1 id='TodayHeading'>Next Job: </h1>
-        <h1 id='TodayHeading' *ngIf="nextJob !== null || jobs == []">{{nextJob.jobDate | date :'dd/MM/yyyy'}}</h1> 
+        <h1 id='TodayHeading' *ngIf="nextJob !== null">{{nextJob.jobDate | date :'dd/MM/yyyy'}}</h1> 
       </span>
       <span class='TodayJobSpan'>
-        <div class='TodayJobElement' *ngIf="nextJob !== null || jobs == []">{{jobs[nextJob.jobIndex].JobTitle}} {{cs.getClientById(jobs[nextJob.jobIndex].clientJob).name}} </div>
+        <div class='TodayJobElement' *ngIf="nextJob !== null">{{jobs[nextJob.jobIndex].JobTitle}} {{cs.getClientById(jobs[nextJob.jobIndex].clientJob).name}} </div>
       </span>
       <br>
       <button mat-flat-button id="submitItem" routerLink="/editnextjob">Edit</button>
