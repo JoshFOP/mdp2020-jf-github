@@ -46,7 +46,7 @@ constructor(
       this.cs.editClient(this.clientsForm.value, this.id);
       alert("Data added to database");
       this.clientsForm.reset();
-      this.router.navigate(['/clientinfo, id']);
+      this.router.navigate(["/clientinfo", this.id]);
     }
 
     if (this.valid == "nameFail") {

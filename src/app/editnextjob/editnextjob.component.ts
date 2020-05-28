@@ -43,7 +43,7 @@ export class EditnextjobComponent implements OnInit {
       }
     );
   }
-
+  // Submits next job data to the next job service then reroutes to home.
   submit(): void {   
     this.njs.addNextJob(this.nextJobForm.value);
     alert("Data added to database" );

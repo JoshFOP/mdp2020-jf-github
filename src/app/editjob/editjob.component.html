@@ -1,45 +1,44 @@
 <section>
-<h1 id='headerTitle'>Edit Job</h1>
-<form [formGroup]="jobsForm" (ngSubmit)="submitEdit()">
-  <div id='AddJobDiv'>
-    <div class='AddJob'>
-      <div class="errorMessage">{{errorMessage}}</div>
-        <span class="AddJobSpan">
-          <mat-form-field class="AddJobInput">
-            <mat-label>Client</mat-label>
-              <mat-select formControlName="clientJob">
-                <mat-option *ngFor="let client of clients; let i=index" [value]="client.id" >
-                  {{client.name}}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-          <div id="breaker"></div>
-          <mat-form-field class="JobTitle">
-            <input matInput placeholder="Job Title" formControlName="JobTitle">
-          </mat-form-field>
-        </span>
+  <h1 id='headerTitle'>Edit Job</h1>
+  <form [formGroup]="jobsForm" (ngSubmit)="submitEdit()">
+    <div id='AddJobDiv'>
+      <div class='AddJob'>
+        <div class="errorMessage">{{errorMessage}}</div>
+          <span class="AddJobSpan">
+            <mat-form-field class="AddJobInput">
+              <mat-label>Client</mat-label>
+                <mat-select formControlName="clientJob">
+                  <mat-option *ngFor="let client of clients; let i=index" [value]="client.id" >
+                    {{client.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div id="breaker"></div>
+            <mat-form-field class="JobTitle">
+              <input matInput placeholder="Job Title" formControlName="JobTitle">
+            </mat-form-field>
+          </span>
 
-      <mat-form-field class="QuoteInput">
-       <span matPrefix>$ &nbsp;</span> <input matInput type="number" placeholder="Quote" formControlName="quote">
-      </mat-form-field>
-   <span class="DateSpan">
-      <mat-form-field class="StartDate">
-          <input matInput [matDatepicker]="Startpicker" placeholder="Start Date" formControlName="startDate">
-          <mat-datepicker-toggle matSuffix [for]="Startpicker"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #Startpicker></mat-datepicker>
-      </mat-form-field>
+        <mat-form-field class="QuoteInput">
+        <span matPrefix>$ &nbsp;</span> <input matInput type="number" placeholder="Quote" formControlName="quote">
+        </mat-form-field>
+    <span class="DateSpan">
+        <mat-form-field class="StartDate">
+            <input matInput [matDatepicker]="Startpicker" placeholder="Start Date" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="Startpicker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #Startpicker></mat-datepicker>
+        </mat-form-field>
 
-      <mat-form-field class="FinishDate">
-          <input matInput [matDatepicker]="Finishpicker" placeholder="Finish Date" formControlName="finishDate">
-          <mat-datepicker-toggle matSuffix [for]="Finishpicker"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #Finishpicker></mat-datepicker>
-      </mat-form-field>
-   </span>
-      <br>
-      <button mat-flat-button id="submitItem">Update</button>
-      <br>
+        <mat-form-field class="FinishDate">
+            <input matInput [matDatepicker]="Finishpicker" placeholder="Finish Date" formControlName="finishDate">
+            <mat-datepicker-toggle matSuffix [for]="Finishpicker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #Finishpicker></mat-datepicker>
+        </mat-form-field>
+    </span>
+        <br>
+        <button mat-flat-button id="submitItem">Update</button>
+        <br>
+      </div>
     </div>
-  </div>
-</form>
-
+  </form>
 </section>

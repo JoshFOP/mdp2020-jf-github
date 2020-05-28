@@ -20,45 +20,57 @@ constructor(
     private js: JobsService,
     private router: Router) { }
 
-  // Make my 'peopleForm' a FormGroup
   jobsForm: FormGroup;
-
-  //router
   id: number;
   private sub: any;
   jobs: any;
   clients: any;
 
   ngOnInit() {
-    // Call the PeopleService Method 'getPeopleArray'
-    // returns all the people data
+    // Gets jobs and client database
     this.jobs = this.js.getJob();
     this.clients = this.cs.getClient();
 
-    // This code graps the "id" from the URL
+    // Gets the id of the job.
     this.sub = this.route.params.subscribe(params => {
-      this.id = + params['id']; // (+) converts string 'id' to a number
+      this.id = + params['id'];
     });
-    // FUNCTION INITIALISE FORM - see below
-    // Pass it two paramters 1. people data array and 2. Current ID of the person
-    // clicked on in the List
-    this.initialiseForm(this.jobs, this.id); // Creates a form Group
-  } // end ngOnInit
+    this.initialiseForm(this.jobs, this.id);
+  }
 
-  message: string = "";
-  editShowBut: boolean = true;
-  bntStyle: string = '';
+  errorMessage: any;
+  valid: any;
+  // Validates the edited data
+  submitEdit(): void {  
+    this.errorMessage = "";
+    this.valid = this.js.checkAdd(this.jobsForm.value);
+    if (this.valid == "pass") {
+      this.js.editJob(this.jobsForm.value, this.id);
+      alert("Data added to database" ) ;
+      this.jobsForm.reset();
+      this.router.navigate(['/clientjob', this.id]);
 
-  submitEdit() {
-    // Grap the edited values from the Form
-    const form = this.jobsForm.value;
-    // Call the PeopleService Method 'editPerson'
-    // Pass it two paramters 1.Edited form values  and 2. Current ID of the person
-    // clicked on in the List
-    this.js.editJob(form, this.id);
-    this.jobs = this.js.getJob();
-    alert("Client has been updated");
-    this.router.navigate(['/home']);
+    }
+    if (this.valid == "clientJobFail") {
+      this.errorMessage = "* You must select a client";
+    }
+
+    else if (this.valid == "JobTitleFail") {
+      this.errorMessage = "* You must enter a job title";
+    }
+
+    else if (this.valid == "quoteFail") {
+      this.errorMessage = "* You must enter a quote amount";
+    }
+
+    else if (this.valid == "startDateFail") {
+      this.errorMessage = "* You must enter a start date";
+    }
+
+     else if (this.valid == "finishDateFail") {
+      this.errorMessage = "* You must enter a finish date";
+    }
+
   }
   initialiseForm(jobs, id): void {
     this.jobsForm = this.fb.group(
@@ -74,13 +86,5 @@ constructor(
         ExpensesLog: [this.jobs[id].ExpensesLog],
       }
     );
-
-  } // end initialiseForm
-
-    openJobEditPage(id: number): void {
-     
-        // IMPORTANT: this 'id' will be passed to the Dialog box as variable named "data"  
-        data: id;    
-   
-    }  //end dialogConfig
+  } 
 }

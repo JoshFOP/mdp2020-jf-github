@@ -12,34 +12,23 @@ import { NextjobService } from '../services/nextjob.service';
 })
 
 export class HomeComponent {
-  todaysJobData = 'John Appleseed';
-
-
-  
 
   constructor(private js: JobsService,private cs: ClientsService, private njs: NextjobService) {
   } 
 
-  // People Variable to hold all people
   jobs: any;
   clients:any;
   found: any;
   nextJob: any;
 
   ngOnInit(): void {
-    // Call PeopleService Method "getPeople" and assign all data to 'people'
+    // Calls the jobs, client and next job database
     this.jobs = this.js.getJob()
     this.clients=this.cs.getClient()
     this.nextJob = this.njs.getNextJob();
     
-  } //end ngOnInit()
+  } 
 
-  openJobPage(id: number): void {
-     
-        // IMPORTANT: this 'id' will be passed to the Dialog box as variable named "data"  
-        data: id    
-   
-    }  //end dialogConfig
 }
   
 

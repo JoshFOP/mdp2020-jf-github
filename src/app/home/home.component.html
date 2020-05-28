@@ -1,30 +1,29 @@
 <section>
 
-<!-- Todays Job START -->
-<div id='TodayJobDiv'>
-  <div class='TodayJob'>
-    <span class='TodayJobSpan'>
-      <h1 id='TodayHeading'>Next Job: </h1>
-       <h1 id='TodayHeading' *ngIf="nextJob !== null || jobs == []">{{nextJob.jobDate | date :'dd/MM/yyyy'}}</h1> 
-    </span>
-    <span class='TodayJobSpan'>
-      <div class='TodayJobElement' *ngIf="nextJob !== null || jobs == []">{{jobs[nextJob.jobIndex].JobTitle}} {{cs.getClientById(jobs[nextJob.jobIndex].clientJob).name}} </div>
-    </span>
-    <br>
-    <button mat-flat-button id="submitItem" routerLink="/editnextjob">Edit</button>
-    <br>
+  <!-- Todays Job START -->
+  <div id='TodayJobDiv'>
+    <div class='TodayJob'>
+      <span class='TodayJobSpan'>
+        <h1 id='TodayHeading'>Next Job: </h1>
+        <h1 id='TodayHeading' *ngIf="nextJob !== null || jobs == []">{{nextJob.jobDate | date :'dd/MM/yyyy'}}</h1> 
+      </span>
+      <span class='TodayJobSpan'>
+        <div class='TodayJobElement' *ngIf="nextJob !== null || jobs == []">{{jobs[nextJob.jobIndex].JobTitle}} {{cs.getClientById(jobs[nextJob.jobIndex].clientJob).name}} </div>
+      </span>
+      <br>
+      <button mat-flat-button id="submitItem" routerLink="/editnextjob">Edit</button>
+      <br>
+    </div>
   </div>
-</div>
-<!-- Todays Job END -->
+  <!-- Todays Job END -->
 
-<h1 id='headerTitle'>Current Jobs</h1>
-<!-- Client Jobs START -->
-<!-- Need to fix id here -->
-<div class='ClientJobsDiv' *ngFor="let item of jobs; let i=index">
-  <button mat-button *ngIf="jobs[i].JobStatus == true" class='ClientJobs' [routerLink]="['/clientjob', i]">
-   {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
-  </button>
-</div>
+  <h1 id='headerTitle'>Current Jobs</h1>
+
+  <div class='ClientJobsDiv' *ngFor="let item of jobs; let i=index">
+    <button mat-button *ngIf="jobs[i].JobStatus == true" class='ClientJobs' [routerLink]="['/clientjob', i]">
+    {{item.JobTitle}} - {{cs.getClientById(item.clientJob).name}}
+    </button>
+  </div>
 
 <!-- Client Jobs END -->
 

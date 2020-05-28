@@ -6,24 +6,20 @@ export class ClientsService {
 clients=[];
   valid: any;
   constructor(private js: JobsService) {
-    /* LOCALSTORAGE
-      Saves clients object into local storage
-    */
+    // initial save. Sets the array for the first client entered
     if (localStorage.clients == null ) {
         localStorage.setItem('clients', JSON.stringify(this.clients));
-        localStorage.setItem('maxclientid', "0");
+        localStorage.setItem('maxclientid', "0"); // Sets permanent ID for client to prevent jobs and clients being mismatched
     }
+  }
 
-  } //end constructor
-
-
+  // Gets the client when called by another component.
   getClient() {
     let clients = JSON.parse(localStorage.getItem('clients'));
     return clients;
   }
 
-  // this FUNCTION accepts 'one' parameter 'person'
-  // and pushes this parameter into the peole array
+  // If one or more client has been entered, this function is called to push another client to the database.
   addClient(Client): void {
     let id = Number(localStorage.getItem('maxclientid')) + 1;
     localStorage.setItem('maxclientid', id.toString());
@@ -34,14 +30,13 @@ clients=[];
     localStorage.setItem('clients', JSON.stringify(clients));
   }
 
-
   editClient(Client, id): void {
     let clients = JSON.parse(localStorage.getItem('clients'));
     clients[id] = Client;
     localStorage.setItem('clients', JSON.stringify(clients));
-    
   }
 
+  // This function gets a client by their permanent ID
   getClientById(id): void {
     let clients = this.getClient();
     var found = null;
