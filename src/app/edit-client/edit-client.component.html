@@ -2,14 +2,13 @@
   <h1 id='headerTitle'>Edit Client Info</h1>
 
   <form class="EditClientForm" [formGroup]="clientsForm" (ngSubmit)="submitEdit()">
-
+    <div class="errormessage">{{errorMessage}}</div>
     <mat-form-field class="FormInputWidth">
       <input matInput placeholder="Name" formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="FormInputWidth">
-      <span matPrefix>+04 &nbsp;</span>
-      <input type="tel" matInput placeholder="Phone Number" formControlName="Pnum">
+      <input type="tel" matInput placeholder="Phone Number" maxlength='10' formControlName="Pnum">
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
@@ -37,7 +36,7 @@
     </span>
     <span class='AddressSpan'>
       <mat-form-field class="FormInputWidth">
-        <input matInput #postalCode maxlength="4" placeholder="Postal Code" formControlName="Pcode">
+        <input matInput #postalCode maxlength="4" placeholder="Postal Code" maxlength='4' formControlName="Pcode">
       </mat-form-field>
     </span>
 

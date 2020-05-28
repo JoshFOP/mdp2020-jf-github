@@ -35,16 +35,47 @@ constructor(
     this.initialiseForm(this.clients, this.id); // Creates a form Group
   } 
 
-  message: string = "";
-  editShowBut: boolean = true;
-  bntStyle: string = '';
+  valid: any;
+  errorMessage: any;
+  
   // Submits edit and reroutes to the clients page.
-  submitEdit() {
-    const form = this.clientsForm.value;
-    this.cs.editClient(form, this.id);
-    this.clients = this.cs.getClient();
-    alert("Client has been updated");
-    this.router.navigate(['/clientinfo', this.id]);
+  submitEdit(): void {  
+    this.errorMessage = "";
+    this.valid = this.cs.checkAdd(this.clientsForm.value); // Gets the perameters for what is considered to be valid from the clients.service.ts
+    if (this.valid == "pass") {
+      this.cs.editClient(this.clientsForm.value, this.id);
+      alert("Data added to database") ;
+      this.clientsForm.reset();
+      this.router.navigate(['/clientinfo, id']);
+
+    }
+    if (this.valid == "nameFail") {
+      this.errorMessage = "* You must enter a name";
+    }
+
+    else if (this.valid == "PnumFail") {
+      this.errorMessage = "* You must enter a phone number";
+    }
+
+    else if (this.valid == "PnumFailInvalid") {
+      this.errorMessage = "* You must enter a valid phone number";
+    }
+
+    else if (this.valid == "Add1Fail") {
+      this.errorMessage = "* Address Line 1 entry has an error";
+    }
+
+    else if (this.valid == "CityFail") {
+      this.errorMessage = "* City entry has an error";
+    }
+
+    else if (this.valid == "StateFail") {
+      this.errorMessage = "* State entry has an error";
+    }
+
+    else if (this.valid == "PcodeFail") {
+      this.errorMessage = "* Postal Code entry has an error";
+    }    
   }
   
   initialiseForm(clients, id): void {
