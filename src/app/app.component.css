@@ -8,9 +8,13 @@ mat-toolbar {
   height: 50px;
 }
 
+.toolbar {
+  width: 100%;
+}
 
 .menubutton {
-  position: absolute;  
+  float: left;
+
 }
 
 .menuicon {
@@ -18,11 +22,19 @@ mat-toolbar {
   font-weight: bold;
 }
 
+.homebutton {
+  color: white;
+  float: right;
+}
 
 .NavTitle {
-  margin: auto;
+  float: none;
+  position: absolute;
+  display: inline-block;
+  text-align: center;
   color:white;
   font-weight: bold;
+  
 }
 
 /*  SIDE MENU  */

@@ -1,12 +1,18 @@
 <section>
 	<mat-toolbar>
+    <span class="toolbar">
 		<button class="menubutton" mat-icon-button (click)="snav.toggle()">
             <mat-icon class="menuicon">menu</mat-icon>
-  </button>
+    </button>
+
 		<div class="NavTitle">
-      Carpentry Assistant
+      Job Assistant
 		</div>
 
+    <button class="homebutton" mat-icon-button routerLink="/home">
+      <mat-icon class="homeicon">home</mat-icon>
+    </button>
+    </span>
 	</mat-toolbar>
 
 	<mat-sidenav-container hasBackdrop="true">
