@@ -58,7 +58,6 @@ clients=[];
   // Checks to see if a clients name already exists.
   checkCurrentClients(newName) {
     let clients = this.getClient();
-    let name;
     for(let i=0; i < clients.length; i++) {
       let clientname = clients[i].name
       if(clientname == newName.name) {
