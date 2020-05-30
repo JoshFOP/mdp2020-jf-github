@@ -44,7 +44,7 @@ constructor(
     this.valid = this.cs.checkEdit(this.clientsForm.value); // Gets the parameters for what is considered to be valid from the clients.service.ts
     if (this.valid == "pass") {
       this.cs.editClient(this.clientsForm.value, this.id);
-      alert("Data added to database");
+      alert("Client has been updated");
       this.clientsForm.reset();
       this.router.navigate(["/clientinfo", this.id]);
     }

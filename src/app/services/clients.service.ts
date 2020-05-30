@@ -55,6 +55,7 @@ clients=[];
     localStorage.setItem('clients', JSON.stringify(clients));
   }
 
+  // Checks to see if a clients name already exists.
   checkCurrentClients(newName) {
     let clients = this.getClient();
     let name;

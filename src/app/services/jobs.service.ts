@@ -5,15 +5,12 @@ export class JobsService {
 jobs=[];
   valid: any;
   constructor() {
-      /* ====LOCALSTORAGE========
-    Local storage stores data as key-value pairs, and the values are stored as "strings". 
-    So, if we must JSON.stringify when we put them into LocalStorage and we must 'parse' the string into a valid object. when we retrieve it.
-    */
+      // initial save of jobs data.
     if (localStorage.jobs == null) {
         localStorage.setItem('jobs', JSON.stringify(this.jobs));
     }
 
-  } //end constructor
+  } 
 
 
   getJob() {
@@ -21,8 +18,7 @@ jobs=[];
     return jobs;
   }
 
-  // this FUNCTION accepts 'one' parameter 'person'
-  // and pushes this parameter into the peole array
+  // If one or more jobs exist, they will be pushed to the array here.
   addJob(Job): void {
     Job.JobStatus = true;
     let jobs = JSON.parse(localStorage.getItem('jobs'));
@@ -55,21 +51,22 @@ jobs=[];
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
+  // Sets the to do list item status to true
   markCompleteToDo(id, index): void {
     let jobs = this.getJob()
     jobs[id].ToDoList[index].toDoStatus = true;
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
+  // Sets the to do list item status to false
   markIncompleteToDo(id, index): void {
     let jobs = this.getJob()
     jobs[id].ToDoList[index].toDoStatus = false;
     localStorage.setItem('jobs', JSON.stringify(jobs));
   }
 
-
+  // validates the values are valid when adding a job.
   checkAdd(addValues): void {
-    //check if inputs in the add are valid
     this.valid = "pass";
     if (typeof addValues.clientJob === 'undefined' || addValues.clientJob == null || addValues.clientJob == "") {
       this.valid = "clientJobFail";
@@ -94,6 +91,6 @@ jobs=[];
     return this.valid;
 
     }
-}  // end class
+} 
     
 

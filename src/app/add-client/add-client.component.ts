@@ -45,7 +45,7 @@ export class AddClientComponent implements OnInit {
     this.valid = this.cs.checkAdd(this.clientsForm.value); // Gets the perameters for what is considered to be valid from the clients.service.ts
     if (this.valid == "pass") {
       this.cs.addClient(this.clientsForm.value);
-      alert("Data added to database" ) ;
+      alert("Client added to database" ) ;
       this.clientsForm.reset();
       this.router.navigate(['/clientlist']);
 

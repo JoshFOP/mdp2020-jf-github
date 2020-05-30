@@ -59,7 +59,7 @@ export class AddjobComponent implements OnInit {
     this.valid = this.js.checkAdd(this.jobsForm.value);
     if (this.valid == "pass") {
       this.js.addJob(this.jobsForm.value);
-      alert("Data added to database" ) ;
+      alert("Job has been added" ) ;
       this.jobsForm.reset();
       this.router.navigate(['/home']);
 

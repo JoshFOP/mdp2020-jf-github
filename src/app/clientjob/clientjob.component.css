@@ -100,6 +100,11 @@ mat-expansion-panel {
   
 }
 
+.JobLogDetails {
+  width: 90%;
+}
+
+
 /* New Item for Job Log */
 .NewItem {
   padding-top: 5px;

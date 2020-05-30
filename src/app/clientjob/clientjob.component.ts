@@ -45,7 +45,7 @@ export class ClientjobComponent implements OnInit {
   DeleteJob() {
     var deletejobcon = confirm("Are you sure you want to delete this job?");
     if (deletejobcon == true) {
-      alert("Job has been delete");
+      alert("Job has been deleted");
       this.js.deleteJob(this.id);
       this.router.navigate(['/home']);
     }

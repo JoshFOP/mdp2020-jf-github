@@ -14,7 +14,10 @@ mat-toolbar {
 
 .menubutton {
   float: left;
-
+  width: 10%;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
 }
 
 .menuicon {
@@ -25,12 +28,16 @@ mat-toolbar {
 .homebutton {
   color: white;
   float: right;
+  width: 10%;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
 }
 
 .NavTitle {
   float: none;
-  position: absolute;
-  display: inline-block;
+  display: block;
+  width: 80%;
   text-align: center;
   color:white;
   font-weight: bold;

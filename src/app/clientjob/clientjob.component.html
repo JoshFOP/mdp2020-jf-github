@@ -111,7 +111,7 @@
       <!-- Mat-List: This is where the Job Log will go -->
       <mat-list *ngFor="let jobLog of jobs[id].JobLog; let i=index;" class="JobLog">
         <mat-list-item>
-          <strong>{{jobLog.jobLogDate | date :'dd/MM/yyyy'}} </strong> | {{jobLog.jobLogHours + " Hours"}} | {{jobLog.jobLogItem}} 
+          <div class='JobLogDetails'> <strong>{{jobLog.jobLogDate | date :'dd/MM/yyyy'}} </strong> | {{jobLog.jobLogHours + " Hours"}} <br> {{jobLog.jobLogItem}}</div>
           <span class="editItem">
             <mat-icon (click)="editJobLog(i)">edit</mat-icon>
             <mat-icon (click)="deleteJobLog(i)">delete</mat-icon>
